@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-18T05:54:34.656Z",
+  "dateBoundaryTests": "passed",
+  "independentDeadlineTests": "passed",
+  "backgroundTimeRecovery": "passed",
+  "capacity": 100,
+  "submissionTime": "12:15 PM",
+  "schedule": "passed",
+  "sponsorshipBenefits": "passed",
+  "pageChecks": [
+    "dist/home: metadata and no-JS facts passed",
+    "dist/register/: metadata and no-JS facts passed",
+    "dist/sponsor/: metadata and no-JS facts passed",
+    "dist/contact/: metadata and no-JS facts passed",
+    "dist-preview/home: metadata and no-JS facts passed",
+    "dist-preview/register/: metadata and no-JS facts passed",
+    "dist-preview/sponsor/: metadata and no-JS facts passed",
+    "dist-preview/contact/: metadata and no-JS facts passed"
+  ],
+  "deadlineCutoffs": null,
+  "participantResponderUrl": "https://forms.gle/Tdr3m6frKN5pmfBTA",
+  "formAccess": {
+    "signedInBrowser": "Both new short URLs resolve to responder forms; You need access observed in the available signed-in session",
+    "anonymousHttp": "Previously observed: 401 Unauthorized",
+    "signedOutBrowser": "not verified"
+  },
+  "publicFiles": [
+    "chick-fil-a.svg",
+    "downloads",
+    "fonts",
+    "markivia-wordmark.png",
+    "media",
+    "rihs-logo-transparent.png",
+    "rihs-logo.png",
+    "media\\ocean-poster.png",
+    "media\\ocean-poster.webp",
+    "media\\ocean.mp4",
+    "fonts\\Geist-400.ttf",
+    "fonts\\Geist-500.ttf",
+    "fonts\\Geist-600.ttf",
+    "fonts\\Geist-700.ttf",
+    "fonts\\Geist-OFL.txt",
+    "fonts\\markivia-jakarta.woff2",
+    "downloads\\rihs-sponsorship-guide.pdf"
+  ],
+  "faqCount": 10
+}

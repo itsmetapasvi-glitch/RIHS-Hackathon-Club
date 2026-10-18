@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-18T05:54:50.501Z",
+  "change": "Contrast and reference-style open navigation, linear intro, published form links",
+  "responsive": {
+    "widths": [
+      375,
+      768,
+      1440
+    ],
+    "routes": [
+      "/",
+      "/register/",
+      "/sponsor/",
+      "/contact/"
+    ],
+    "layouts": 12,
+    "overflowFailures": 0,
+    "editorLinks": 0,
+    "orbitElements": 0
+  },
+  "interactions": {
+    "tierDisclosure": "passed",
+    "contactEmailCopy": "passed",
+    "applicationActions": "separate vertically stacked links"
+  },
+  "navigation": {
+    "background": "transparent",
+    "containerRadius": 0,
+    "registrationAndSponsorPills": true
+  },
+  "footer": "#204c79",
+  "forms": {
+    "participant": "https://forms.gle/Tdr3m6frKN5pmfBTA",
+    "sponsor": "https://forms.gle/FLytMPMBTxQf9oVL7",
+    "signedInSession": "Both resolve to responder forms; You need access observed",
+    "signedOutBrowser": "not verified"
+  },
+  "ocean": {
+    "component": "SHA-256 unchanged",
+    "video": "SHA-256 unchanged"
+  },
+  "intro": {
+    "orbitElements": 0,
+    "visuallyReviewed": true
+  },
+  "limitations": [
+    "Physical devices not tested",
+    "Form access not checked signed out"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "build": "dist",
+      "filesAndRoutes": 22,
+      "failures": [],
+      "videoRange": {
+        "status": 206,
+        "contentType": "video/mp4",
+        "range": "bytes 1024-2047/6118184",
+        "bytes": 1024
+      }
+    },
+    {
+      "build": "dist-preview",
+      "filesAndRoutes": 22,
+      "failures": [],
+      "videoRange": {
+        "status": 206,
+        "contentType": "video/mp4",
+        "range": "bytes 1024-2047/6118184",
+        "bytes": 1024
+      }
+    }
+  ]
+}
