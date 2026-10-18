@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
-import {ArrowRight,ArrowUpRight,ArrowDown,Pause,Play,Menu,X,Plus,Minus,MapPin,Mail,Download,Waves,Compass,Code2,Flag,Utensils,Trophy,Sparkles,Clock3,Users,Ticket,CalendarDays,ExternalLink} from 'lucide-react';
+import {ArrowUpRight,ArrowDown,Pause,Play,Menu,X,Plus,Minus,MapPin,Mail,Download,Waves,Compass,Code2,Flag,Utensils,Trophy,Sparkles,Clock3,Users,Ticket,CalendarDays,ExternalLink} from 'lucide-react';
 import {event,eventState,applicationState,tiers,sponsors,faqs,schedule} from './event';
 import OceanHero from './OceanHero';
 
@@ -43,23 +43,6 @@ function useTextReveals(reduced:boolean){
     document.addEventListener('focusin',focus);
     return()=>{observer.disconnect();running.forEach(a=>a.cancel());elements.forEach(el=>el.classList.remove('reveal-pending'));document.removeEventListener('focusin',focus);};
   },[reduced]);
-}
-
-function Intro({onEnd}:{onEnd:()=>void}){
-  const [step,setStep]=useState(0);const skip=useRef<HTMLButtonElement>(null);
-  useEffect(()=>{
-    skip.current?.focus({preventScroll:true});
-    const steps=setInterval(()=>setStep(s=>Math.min(s+1,3)),560);
-    const finish=setTimeout(onEnd,2450);
-    const previous=document.body.style.overflowY;document.body.style.overflowY='hidden';
-    return()=>{clearInterval(steps);clearTimeout(finish);document.body.style.overflowY=previous;};
-  },[onEnd]);
-  return <div className="intro" role="dialog" aria-modal="true" aria-label="RIHS Hackathon introduction" onClick={onEnd} onKeyDown={e=>{if(e.key==='Escape')onEnd();}}>
-    <div className="intro-water" aria-hidden="true"/><div className="intro-horizon" aria-hidden="true"><span/><span/><span/></div><div className="intro-coordinates" aria-hidden="true"><span>RIHS HACKATHON / LATHROP, CA</span><span>JAN 09 / 2027</span></div><div className="intro-caption" aria-hidden="true"><Waves size={24}/><span>INTO THE NEXT WAVE</span></div>
-    {step<3?<span className="intro-word" key={step} aria-hidden="true">{['BUILD','SHIP','DEMO'][step]}</span>:<img className="intro-logo" src="/rihs-logo-transparent.png" alt={event.name}/>}
-    <div className="intro-track" aria-hidden="true"><span/></div><span className="sr-only">Build. Ship. Demo.</span>
-    <button ref={skip} className="intro-skip" onClick={onEnd}>Skip intro <ArrowRight size={18}/></button>
-  </div>;
 }
 
 function Cursor({reduced}:{reduced:boolean}){
@@ -154,9 +137,7 @@ export default function App(){
   const reduced=system||user;
   useTextReveals(reduced);
   const toggleMotion=()=>{const next=!user;setUser(next);try{localStorage.setItem('rihs.motion',next?'reduced':'full');}catch{}};
-  const [intro,setIntro]=useState(()=>{try{return currentPage==='home'&&!sessionStorage.getItem('rihs:intro-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!location.hash;}catch{return false;}});
-  const end=useRef(()=>{try{sessionStorage.setItem('rihs:intro-seen','1');}catch{}setIntro(false);});
-  useEffect(()=>{document.documentElement.dataset.motion=reduced?'reduced':'full';if(reduced)setIntro(false);},[reduced]);
+  useEffect(()=>{document.documentElement.dataset.motion=reduced?'reduced':'full';},[reduced]);
   useEffect(()=>{
     const syncPreferences=()=>{try{setUser(localStorage.getItem('rihs.motion')==='reduced');}catch{}};
     window.addEventListener('pageshow',syncPreferences);window.addEventListener('storage',syncPreferences);
@@ -169,7 +150,7 @@ export default function App(){
     restoreAnchor();document.fonts.ready.then(restoreAnchor);
     return()=>{disposed=true;cancelAnimationFrame(frame);};
   },[]);
-  return <>{intro&&<Intro onEnd={end.current}/>}<div className={'site-shell page-'+currentPage} inert={intro||undefined}>
+  return <><div className={'site-shell page-'+currentPage}>
     <a className="skip-link" href="#main">Skip to content</a>
     <Cursor reduced={reduced}/>
     <Header page={currentPage} reduced={reduced} locked={system} toggleMotion={toggleMotion}/>

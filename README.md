@@ -17,9 +17,9 @@ The public build is dist/. The private design preview is dist-preview/. Only spo
 
 ## Current design
 
-An open transparent header follows the supplied navigation reference, with separate registration and sponsorship pill actions. The intro uses large type, straight lines, and a short reveal; decorative circles have been removed. Secondary pages use pale neutral backgrounds, navy panels, and clear action groups. Footer uses the same dark blue as the schedule and FAQ. All five sponsorship tiers and 30 benefits/conditions are retained.
+An open transparent header follows the supplied navigation reference, with separate registration and sponsorship pill actions. The loading intro has been removed; the hero is available immediately. Secondary pages use pale neutral backgrounds, navy panels, and clear action groups. Footer uses the same dark blue as the schedule and FAQ. All five sponsorship tiers and 30 benefits/conditions are retained.
 
-The ocean component and MP4 remain unchanged, verified by SHA-256. Hero countdown targets 2027-01-09T09:00:00-08:00, recovers after background pauses, and changes state at 9 AM and 3 PM Pacific. Intro timing, Skip, Escape, session persistence and reduced motion remain. Native cursor is always available.
+The ocean component and MP4 remain unchanged, verified by SHA-256. Hero countdown targets 2027-01-09T09:00:00-08:00, recovers after background pauses, and changes state at 9 AM and 3 PM Pacific. Reduced-motion preferences remain supported. Native cursor is always available.
 
 ## Event and forms
 
