@@ -19,7 +19,9 @@ export function useScrollbarSurface(){
       observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)apply(entry.target);},{rootMargin:`-${inset}px 0px -${inset}px 0px`,threshold:0});
       document.querySelectorAll('.section,.ocean-journey,.site-footer').forEach(node=>observer.observe(node));
     };
-    observe();window.addEventListener('resize',observe);
-    return()=>{observer.disconnect();window.removeEventListener('resize',observe);html.style.removeProperty('--scrollbar-track');html.style.removeProperty('--scrollbar-thumb');};
+    let width=innerWidth;
+    const resize=()=>{if(width!==innerWidth){width=innerWidth;observe();}};
+    observe();window.addEventListener('resize',resize);
+    return()=>{observer.disconnect();window.removeEventListener('resize',resize);html.style.removeProperty('--scrollbar-track');html.style.removeProperty('--scrollbar-thumb');};
   },[]);
 }

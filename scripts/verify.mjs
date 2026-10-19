@@ -52,7 +52,17 @@ for(const folder of ['dist','dist-preview']){
  const guide=await stat(new URL(`${folder}/downloads/rihs-sponsorship-guide.pdf`,root));assert(guide.size>1000);
  const media=await stat(new URL(`${folder}/media/ocean.mp4`,root));assert(media.size>1000000);
  const surface=await stat(new URL(`${folder}/media/hero-surface.mp4`,root));assert(surface.size>1000000);
- for(const video of ['ocean-portrait.mp4','hero-surface-portrait.mp4'])assert((await stat(new URL(`${folder}/media/${video}`,root))).size>1000000);
+ for(const video of ['ocean-portrait.mp4','hero-surface-portrait.mp4','ocean-mobile-wide.mp4','hero-surface-mobile-wide.mp4'])assert((await stat(new URL(`${folder}/media/${video}`,root))).size>1000000);
+ for(const orientation of ['portrait','landscape']){
+  const path=`${folder}/media/ocean-frames/${orientation}/`;
+  const frames=await readdir(new URL(path,root));
+  assert.equal(frames.length,240);
+  for(let i=0;i<240;i++)assert(frames.includes(`${String(i).padStart(3,'0')}.webp`));
+  for(const frame of ['000.webp','239.webp']){
+   const data=await readFile(new URL(path+frame,root));
+   assert.equal(data.toString('ascii',0,4),'RIFF');assert.equal(data.toString('ascii',8,12),'WEBP');
+  }
+ }
  const poster=await stat(new URL(`${folder}/media/hero-surface-poster.webp`,root));assert(poster.size>1000);
  for(const font of ['CrimsonText-Regular.woff2','CrimsonText-Italic.woff2','Inter-Regular.woff2','Inter-Medium.woff2','Inter-Semibold.woff2'])assert((await stat(new URL(`${folder}/fonts/${font}`,root))).size>10000);
  for(const license of ['CrimsonText-OFL.txt','Inter-OFL.txt'])assert(/SIL OPEN FONT LICENSE/i.test(await readFile(new URL(`${folder}/fonts/${license}`,root),'utf8')));

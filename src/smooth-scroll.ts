@@ -1,26 +1,36 @@
-import {useLayoutEffect} from 'react';
+import {useLayoutEffect,useRef} from 'react';
 import Lenis from 'lenis';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {entryTarget,restoreEntryHash,sectionTop,settleOceanFrame} from './navigation';
 import 'lenis/dist/lenis.css';
 
-export function useSmoothScroll(reduced:boolean){
+export function useSmoothScroll(reduced:boolean,mobile:boolean){
+  const entryPlaced=useRef(false);
   useLayoutEffect(()=>{
     const html=document.documentElement;
-    const lenis=reduced?null:new Lenis({autoRaf:false,anchors:false,syncTouch:false,lerp:.16});
+    const lenis=reduced||mobile?null:new Lenis({autoRaf:false,anchors:false,syncTouch:false,lerp:.16});
     html.dataset.scrollOwner=lenis?'lenis':'native';
     const tick=(seconds:number)=>lenis?.raf(seconds*1000);
     const update=()=>ScrollTrigger.update();
     if(lenis){lenis.on('scroll',update);gsap.ticker.add(tick);}
     const lock=(e:Event)=>{if((e as CustomEvent<boolean>).detail)lenis?.stop();else lenis?.start();};
     document.addEventListener('rihs:menu-lock',lock);
-    let alive=true,frame=0,interacted=false;
+    let alive=true,frame=0,interacted=false,cancelNative=()=>{};
     let transition:ViewTransition|undefined;
     const position=(target:HTMLElement)=>Math.max(0,sectionTop(target)-(target.closest('.arrival-enhanced')?0:28));
     const scroll=(y:number,immediate=true,onComplete?:()=>void)=>{
+      cancelNative();
       if(lenis)lenis.scrollTo(y,{immediate,force:true,duration:.65,easing:t=>1-Math.pow(1-t,4),onComplete});
-      else {window.scrollTo({top:y,behavior:'instant'});onComplete?.();}
+      else if(immediate){window.scrollTo({top:y,behavior:'auto'});onComplete?.();}
+      else {
+        let timeout=0;
+        const finish=()=>{clearTimeout(timeout);window.removeEventListener('scrollend',finish);cancelNative=()=>{};onComplete?.();};
+        cancelNative=()=>{clearTimeout(timeout);window.removeEventListener('scrollend',finish);};
+        window.addEventListener('scrollend',finish,{once:true});
+        timeout=window.setTimeout(finish,800);
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
       ScrollTrigger.update();
     };
     const findTarget=()=>{try{return document.getElementById(decodeURIComponent(location.hash.slice(1)));}catch{return null;}};
@@ -33,11 +43,12 @@ export function useSmoothScroll(reduced:boolean){
     const refresh=()=>{lenis?.resize();ScrollTrigger.refresh();};
     // Child layout effects create ocean scenes first. Position once before first paint.
     refresh();
-    const initial=entryTarget();
+    const initial=entryPlaced.current?null:entryTarget();
+    entryPlaced.current=true;
     if(initial)scroll(position(initial));
     restoreEntryHash();
     const initialHash=location.hash;
-    const interaction=()=>{interacted=true;};
+    const interaction=()=>{interacted=true;cancelNative();};
     window.addEventListener('wheel',interaction,{passive:true});window.addEventListener('touchstart',interaction,{passive:true});window.addEventListener('keydown',interaction);
     document.fonts.ready.then(()=>{
       if(!alive)return;
@@ -58,7 +69,7 @@ export function useSmoothScroll(reduced:boolean){
       const commit=()=>{scroll(position(target!));document.dispatchEvent(new CustomEvent('rihs:section-navigation',{detail:target}));focusTarget(target!);};
       const longJump=Math.abs(destination-window.scrollY)>window.innerHeight*1.5;
       transition?.skipTransition();
-      if(!reduced&&e.detail>0&&longJump&&document.startViewTransition){
+      if(!reduced&&!mobile&&e.detail>0&&longJump&&document.startViewTransition){
         transition=document.startViewTransition(async()=>{commit();await settleOceanFrame();});
         transition.ready.catch(()=>{/* A newer navigation can skip this transition. */});
         transition.finished.catch(()=>{/* Navigation interruption is expected. */});
@@ -69,6 +80,6 @@ export function useSmoothScroll(reduced:boolean){
     const pageshow=(event:PageTransitionEvent)=>{if(event.persisted)layout();};
     document.addEventListener('click',click);document.addEventListener('toggle',layout,true);document.addEventListener('rihs:layout',layout);
     window.addEventListener('hashchange',restore);window.addEventListener('pageshow',pageshow);
-    return()=>{alive=false;transition?.skipTransition();cancelAnimationFrame(frame);window.removeEventListener('wheel',interaction);window.removeEventListener('touchstart',interaction);window.removeEventListener('keydown',interaction);document.removeEventListener('click',click);document.removeEventListener('toggle',layout,true);document.removeEventListener('rihs:layout',layout);document.removeEventListener('rihs:menu-lock',lock);window.removeEventListener('hashchange',restore);window.removeEventListener('pageshow',pageshow);if(lenis){gsap.ticker.remove(tick);lenis.off('scroll',update);lenis.destroy();}delete html.dataset.scrollOwner;};
-  },[reduced]);
+    return()=>{alive=false;cancelNative();transition?.skipTransition();cancelAnimationFrame(frame);window.removeEventListener('wheel',interaction);window.removeEventListener('touchstart',interaction);window.removeEventListener('keydown',interaction);document.removeEventListener('click',click);document.removeEventListener('toggle',layout,true);document.removeEventListener('rihs:layout',layout);document.removeEventListener('rihs:menu-lock',lock);window.removeEventListener('hashchange',restore);window.removeEventListener('pageshow',pageshow);if(lenis){gsap.ticker.remove(tick);lenis.off('scroll',update);lenis.destroy();}delete html.dataset.scrollOwner;};
+  },[reduced,mobile]);
 }

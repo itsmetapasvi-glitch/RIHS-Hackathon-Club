@@ -19,4 +19,4 @@ export function updateOceanStory(root:HTMLElement,progress:number){
   });
 }
 
-export default function OceanStory(){return <div className="dive-note ocean-story" aria-hidden="true">{chapters.map((chapter,index)=><div className="dive-chapter" key={chapter.label}><span className="dive-chapter-label"><span>0{index+1} / 03</span>{chapter.label}</span><p className="dive-title">{chapter.title}</p><p className="dive-description">{chapter.description}</p></div>)}</div>;}
+export default function OceanStory({flow=false}:{flow?:boolean}){return <div className={flow?'phone-ocean-story':'dive-note ocean-story'} aria-hidden="true">{chapters.map((chapter,index)=><div className={flow?'phone-ocean-chapter':'dive-chapter'} key={chapter.label}><span className="dive-chapter-label"><span>0{index+1} / 03</span>{chapter.label}</span><p className="dive-title">{chapter.title}</p><p className="dive-description">{chapter.description}</p></div>)}</div>;}

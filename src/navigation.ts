@@ -10,6 +10,7 @@ export function sectionTop(target:HTMLElement):number{
 
 const entryHash=location.hash;
 let pendingEntry=entryHash;
+export const isEntryPending=()=>Boolean(pendingEntry);
 export const hasSceneEntry=['about','theme','schedule','faq','venue','our-sponsors'].some(id=>entryHash==='#'+id);
 export function entryTarget():HTMLElement|null{
   try{return document.getElementById(decodeURIComponent(entryHash.slice(1)));}catch{return null;}
@@ -25,7 +26,7 @@ export function restoreEntryHash(){
 /** Let a long-distance section switch capture the decoded destination, with a bounded wait. */
 export function settleOceanFrame(timeout=280):Promise<void>{
   const root=document.querySelector<HTMLElement>('.ocean-journey');
-  const video=root?.querySelector<HTMLVideoElement>('.scroll-ocean');
+  const video=root?.querySelector<HTMLVideoElement>('video.scroll-ocean');
   if(!root||!video||root.getBoundingClientRect().bottom<=0)return Promise.resolve();
   return new Promise(resolve=>{
     let timer=0;

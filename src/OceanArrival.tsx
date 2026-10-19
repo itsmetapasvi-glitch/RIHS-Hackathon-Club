@@ -5,11 +5,11 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /** One scroll-owned entrance over the continuously scrubbed video; no asynchronous catch-up. */
-export default function OceanArrival({reduced,children}:{reduced:boolean;children:React.ReactNode}){
+export default function OceanArrival({reduced,mobile,children}:{reduced:boolean;mobile:boolean;children:React.ReactNode}){
   const element=useRef<HTMLDivElement>(null);
   useLayoutEffect(()=>{
     const root=element.current;
-    if(!root||reduced)return;
+    if(!root||reduced||mobile)return;
     const media=gsap.matchMedia();
     media.add({motion:'(prefers-reduced-motion: no-preference)'},match=>{
       if(!match.conditions?.motion)return;
@@ -34,8 +34,8 @@ export default function OceanArrival({reduced,children}:{reduced:boolean;childre
       return()=>{context.revert();root.classList.remove('arrival-enhanced','arrival-settled');delete root.dataset.arrivalProgress;};
     });
     return()=>media.revert();
-  },[reduced]);
-  return <div ref={element} className={'ocean-arrival'+(reduced?' arrival-static':'')}>
+  },[reduced,mobile]);
+  return <div ref={element} className={'ocean-arrival'+(reduced?' arrival-static':mobile?' arrival-flow':'')}>
     <div className="arrival-stage"><div className="arrival-surface">{children}</div></div>
   </div>;
 }
