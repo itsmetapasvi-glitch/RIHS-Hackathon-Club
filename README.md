@@ -50,3 +50,21 @@ The manual pause control and saved override were removed as requested. System re
 Preview sponsors use a continuous ribbon of rounded white glass panels. Only DIGITAL in Markivia is gold. Copies are hidden from assistive technology and contain no repeated links. Keyboard focus holds the ribbon; reduced motion presents a static row. Sponsor confirmation filtering is unchanged.
 
 See scroll-handoff-verification.md for checks and limitations. No commit or push was performed.
+
+
+## Latest: ocean blend, confirmed sponsors, and native cursor
+
+The rising surface now retains balanced ocean gutters until the final part of its entrance. Top and side alpha gradients blend ivory into the actual ocean video; those masks resolve completely when the section settles. The custom cursor component and its pointer listeners/styles have been removed.
+
+Chick-fil-A and Markivia Digital were both confirmed by the organizer on October 18, 2026. Their configurable records are now confirmed, so both logos appear in standard production builds as well as previews. Future unconfirmed records remain filtered from publication. Only DIGITAL in the Markivia wordmark is gold.
+
+Verified in production mode on the home page, with mobile and desktop viewport checks, normal cursor behavior, settled anchor state, readable gradient edges, and no horizontal overflow. Both builds and content verification pass. These corrections are included in the website source.
+
+
+Latest width correction: the rising ivory section spans the viewport throughout its entrance, with square solid sides/corners. Side masks, inset gutters, scale and tilt were removed at the organizer's request; only the top-edge ocean blend and vertical scroll rise remain. No ocean media was modified. This supersedes the earlier balanced-gutter description.
+
+
+Markivia contrast correction: MARKIVIA is white and DIGITAL gold on a compact navy backing inside the existing white glass sponsor panel. Sponsor panels remain white; ribbon motion and links are unchanged.
+
+
+Latest hero cleanup: removed the Scroll to explore cue and the trailing dot after 2027 in the hero heading. Production and preview builds, content verification, and browser inspection passed before publication.

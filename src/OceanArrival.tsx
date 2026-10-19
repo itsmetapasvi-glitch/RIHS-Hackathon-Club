@@ -16,9 +16,13 @@ export default function OceanArrival({reduced,children}:{reduced:boolean;childre
       const compact=!!match.conditions.compact;
       root.classList.add('arrival-enhanced');
       const context=gsap.context(()=>{
-        const scene=gsap.timeline({paused:true}).fromTo(root.querySelector('.arrival-surface'),
-          {y:()=>window.innerHeight,scale:compact?.97:.9,rotationX:compact?0:4,borderRadius:compact?'24px 24px 0 0':'36px 36px 0 0'},
-          {y:0,scale:1,rotationX:0,borderRadius:'0px',duration:1,ease:'none',immediateRender:true});
+        const surface=root.querySelector('.arrival-surface');
+        const scene=gsap.timeline({paused:true})
+          .fromTo(surface,
+            {y:()=>window.innerHeight,scale:1,rotationX:0,borderRadius:'0px',
+              '--arrival-top-feather':compact?'40px':'96px'},
+            {y:0,scale:1,rotationX:0,duration:1,ease:'none',immediateRender:true})
+          .to(surface,{'--arrival-top-feather':'0px',duration:.28,ease:'power1.inOut'},.72);
         const render=(progress:number)=>{
           // Explicit boundaries also cover anchor jumps, reverse scroll, and layout refreshes.
           progress=progress>.999?1:progress<.001?0:progress;

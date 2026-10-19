@@ -28,30 +28,6 @@ function useReducedMotion(){
 
 function Words({text}:{text:string}){return <>{text.split(/(\s+)/).map((word,i)=>word.trim()?<span className="reveal-word" data-word={i/2} key={i}>{word}</span>:word)}</>;}
 
-function Cursor({reduced}:{reduced:boolean}){
-  const ring=useRef<HTMLDivElement>(null),dot=useRef<HTMLDivElement>(null);
-  useEffect(()=>{
-    if(reduced||!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
-    let x=-100,y=-100,rx=-100,ry=-100,hover=false,shown=false,frame=0,last=0;
-    const move=(e:PointerEvent)=>{
-      x=e.clientX;y=e.clientY;
-      if(!shown){rx=x;ry=y;shown=true;}
-      const target=e.target as HTMLElement;
-      const native=!!target.closest('input,textarea,select,iframe,dialog,[contenteditable="true"]');
-      hover=!!target.closest('a,button,summary');
-      document.documentElement.classList.toggle('custom-cursor',!native);
-      if(ring.current)ring.current.style.opacity=native?'0':'1';
-      if(dot.current){dot.current.style.opacity=native?'0':'1';dot.current.style.transform=`translate3d(${x}px,${y}px,0)`;}
-      if(!frame){last=performance.now();frame=requestAnimationFrame(render);}
-    };
-    const leave=()=>{cancelAnimationFrame(frame);frame=0;shown=false;document.documentElement.classList.remove('custom-cursor');if(ring.current)ring.current.style.opacity='0';if(dot.current)dot.current.style.opacity='0';};
-    const render=(t:number)=>{frame=0;const dt=Math.min((t-last)/1000,.06);last=t;if(!shown)return;rx+=(x-rx)*(1-Math.exp(-dt*18));ry+=(y-ry)*(1-Math.exp(-dt*18));if(ring.current)ring.current.style.transform=`translate3d(${rx}px,${ry}px,0) scale(${hover?1.55:1})`;if(Math.abs(x-rx)+Math.abs(y-ry)>.1)frame=requestAnimationFrame(render);};
-    document.addEventListener('pointermove',move);document.addEventListener('mouseleave',leave);window.addEventListener('blur',leave);document.addEventListener('visibilitychange',leave);
-    return()=>{cancelAnimationFrame(frame);document.removeEventListener('pointermove',move);document.removeEventListener('mouseleave',leave);window.removeEventListener('blur',leave);document.removeEventListener('visibilitychange',leave);leave();};
-  },[reduced]);
-  return <><div className="cursor-ring" ref={ring} aria-hidden="true"/><div className="cursor-dot" ref={dot} aria-hidden="true"/></>;
-}
-
 function Brand(){return <a className="brand" href="/" translate="no" aria-label="RIHS Hackathon home"><img src="/rihs-logo-transparent.png" alt="RIHS Hackathon" width="196" height="46"/></a>;}
 function Header({page,reduced}:{page:Page;reduced:boolean}){
   const dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null),pointerOpen=useRef(false);
@@ -136,7 +112,6 @@ export default function App(){
   useEffect(()=>{try{localStorage.removeItem('rihs.motion');}catch{/* Legacy manual pause no longer applies. */}},[]);
   return <><div className={'site-shell page-'+currentPage}>
     <a className="skip-link" href="#main">Skip to content</a>
-    <Cursor reduced={reduced}/>
     <Header page={currentPage} reduced={reduced}/>
     <main id="main" tabIndex={-1}>{currentPage==='home'?<><OceanHero reduced={reduced} arrival={<About/>}><Countdown/></OceanHero><Challenge/><Schedule/><SponsorDisplay compact/><FAQ/><Venue/></>:currentPage==='register'?<RegisterPage/>:currentPage==='sponsor'?<SponsorPage/>:<ContactPage/>}</main>
     <Footer/>

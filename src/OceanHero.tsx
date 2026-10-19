@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
-import {ArrowDown,ArrowUpRight} from 'lucide-react';
+import {ArrowUpRight} from 'lucide-react';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {event} from './event';
@@ -100,7 +100,7 @@ export default function OceanHero({reduced,children,arrival}:{reduced:boolean;ch
       <div className="hero-primary">
         <div className="hero-copy">
           <p className="hero-date">{event.shortDate} · 9am–3pm Pacific</p>
-          <h1 id="hero-title">RIHS Hackathon<br/><span>2027.</span></h1>
+          <h1 id="hero-title">RIHS Hackathon<br/><span>2027</span></h1>
           <p className="hero-description">A day of building, learning, and making ideas real.<br className="desktop-break"/> {event.school}, Lathrop.</p>
           <div className="hero-actions"><a className="button hero-button" href="/register/">Register to Participate <ArrowUpRight aria-hidden="true" size={17}/></a><a className="hero-sponsor" href="/sponsor/">Sponsor Us <ArrowUpRight aria-hidden="true" size={17}/></a></div>
           <p className="hero-deadline">Participant & sponsor deadline: {event.deadlineLabel}</p>
@@ -109,7 +109,6 @@ export default function OceanHero({reduced,children,arrival}:{reduced:boolean;ch
       </div>
       <OceanStory/>
       <div className="hero-transition"/>
-      {!reduced&&!failed&&<div className="scroll-cue" aria-hidden="true"><span>Scroll to explore</span><ArrowDown aria-hidden="true" size={16}/></div>}
     </div>
     {!reduced&&!failed&&<div className="ocean-scroll-track" aria-hidden="true"/>}
     <OceanArrival reduced={reduced||failed}>{arrival}</OceanArrival>

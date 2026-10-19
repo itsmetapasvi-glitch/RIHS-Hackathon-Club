@@ -25,7 +25,7 @@ export function applicationState(kind:'participant'|'sponsor',now:number) {
 }
 
 export type Sponsor={name:string;logo:string;website:string;tier?:string;displayOrder:number;confirmationStatus:'unconfirmed'|'confirmed'};
-export const sponsors:Sponsor[]=[{name:'Chick-fil-A',logo:'/chick-fil-a.svg',website:'https://www.chick-fil-a.com/',displayOrder:1,confirmationStatus:'unconfirmed'},{name:'Markivia Digital',logo:'/markivia-wordmark.png',website:'https://www.markiviadigital.com/',displayOrder:2,confirmationStatus:'unconfirmed'}];
+export const sponsors:Sponsor[]=[{name:'Chick-fil-A',logo:'/chick-fil-a.svg',website:'https://www.chick-fil-a.com/',displayOrder:1,confirmationStatus:'confirmed'},{name:'Markivia Digital',logo:'/markivia-wordmark.png',website:'https://www.markiviadigital.com/',displayOrder:2,confirmationStatus:'confirmed'}];
 
 export const tiers=[
  {name:'Community Supporter',price:'$250',benefits:['Business logo in the website’s Community Supporters section.','Collective social media thank-you post.','Business name in event sponsor recognition.','Digital certificate of appreciation.','Recognition in the post-event community impact recap.']},

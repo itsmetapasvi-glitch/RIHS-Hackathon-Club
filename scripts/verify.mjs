@@ -28,7 +28,7 @@ assert.deepEqual(schedule.map(e=>e.time),['8:30 AM','9:00 AM','9:15 AM','12:15 P
 assert.deepEqual(tiers.map(t=>t.price),['$250','$500','$750','$1,000','$1,500+']);
 assert.deepEqual(tiers.map(t=>t.benefits.length),[5,5,6,7,7]);
 assert(tiers[1].benefits.some(s=>s.includes('production deadlines')));assert(tiers[4].benefits.some(s=>s.includes('school approval')));
-assert.equal(sponsors[0].confirmationStatus,'unconfirmed');assert.equal(sponsors[0].tier,undefined);
+assert(sponsors.every(s=>s.confirmationStatus==='confirmed'));assert.equal(sponsors.length,2);assert.equal(sponsors[0].tier,undefined);
 const files=await readdir(new URL('public/',root),{recursive:true});
 assert(!files.some(f=>/budget|prospect|volunteer|\.docx|\.xlsx|flyer/i.test(f)));
 const app=await readFile(new URL('src/App.tsx',root),'utf8');
