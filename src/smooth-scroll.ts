@@ -1,37 +1,51 @@
-import {useEffect} from 'react';
+import {useLayoutEffect} from 'react';
 import Lenis from 'lenis';
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {entryTarget,restoreEntryHash,sectionTop,settleOceanFrame} from './navigation';
 import 'lenis/dist/lenis.css';
 
 export function useSmoothScroll(reduced:boolean){
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     const html=document.documentElement;
-    const lenis=reduced?null:new Lenis({autoRaf:false,anchors:false,syncTouch:false,lerp:.12});
+    const lenis=reduced?null:new Lenis({autoRaf:false,anchors:false,syncTouch:false,lerp:.16});
     html.dataset.scrollOwner=lenis?'lenis':'native';
     const tick=(seconds:number)=>lenis?.raf(seconds*1000);
     const update=()=>ScrollTrigger.update();
     if(lenis){lenis.on('scroll',update);gsap.ticker.add(tick);}
     const lock=(e:Event)=>{if((e as CustomEvent<boolean>).detail)lenis?.stop();else lenis?.start();};
     document.addEventListener('rihs:menu-lock',lock);
-    const anchorPosition=(target:HTMLElement):HTMLElement|number=>{
-      const arrival=target.closest<HTMLElement>('.arrival-enhanced');
-      return arrival?arrival.getBoundingClientRect().top+window.scrollY+arrival.offsetHeight-arrival.querySelector<HTMLElement>('.arrival-stage')!.offsetHeight+28:target;
+    let alive=true,frame=0,interacted=false;
+    let transition:ViewTransition|undefined;
+    const position=(target:HTMLElement)=>Math.max(0,sectionTop(target)-(target.closest('.arrival-enhanced')?0:28));
+    const scroll=(y:number,immediate=true,onComplete?:()=>void)=>{
+      if(lenis)lenis.scrollTo(y,{immediate,force:true,duration:.65,easing:t=>1-Math.pow(1-t,4),onComplete});
+      else {window.scrollTo({top:y,behavior:'instant'});onComplete?.();}
+      ScrollTrigger.update();
     };
     const findTarget=()=>{try{return document.getElementById(decodeURIComponent(location.hash.slice(1)));}catch{return null;}};
-    let alive=true,frame=0;
-    const restore=()=>{
-      if(!alive||!location.hash)return;
-      const target=findTarget();
-      if(target)frame=requestAnimationFrame(()=>{if(lenis)lenis.scrollTo(anchorPosition(target),{immediate:true,offset:-28});else target.scrollIntoView({behavior:'instant'});});
+    const focusTarget=(target:HTMLElement)=>{
+      const hadIndex=target.hasAttribute('tabindex');
+      if(!hadIndex)target.setAttribute('tabindex','-1');
+      target.focus({preventScroll:true});
+      if(!hadIndex)target.addEventListener('blur',()=>target.removeAttribute('tabindex'),{once:true});
     };
+    const refresh=()=>{lenis?.resize();ScrollTrigger.refresh();};
+    // Child layout effects create ocean scenes first. Position once before first paint.
+    refresh();
+    const initial=entryTarget();
+    if(initial)scroll(position(initial));
+    restoreEntryHash();
     const initialHash=location.hash;
-    let interacted=false;
     const interaction=()=>{interacted=true;};
     window.addEventListener('wheel',interaction,{passive:true});window.addEventListener('touchstart',interaction,{passive:true});window.addEventListener('keydown',interaction);
-    restore();document.fonts.ready.then(()=>{if(!interacted&&location.hash===initialHash)restore();});
+    document.fonts.ready.then(()=>{
+      if(!alive)return;
+      refresh();
+      if(initial&&!interacted&&location.hash===initialHash)scroll(position(initial));
+    });
     const click=(e:MouseEvent)=>{
-      if(!lenis||e.defaultPrevented||e.button||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
+      if(e.defaultPrevented||e.button||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
       const link=(e.target as Element).closest<HTMLAnchorElement>('a[href]');
       if(!link||link.target||link.hasAttribute('download'))return;
       const url=new URL(link.href,location.href);
@@ -40,14 +54,21 @@ export function useSmoothScroll(reduced:boolean){
       try{target=document.getElementById(decodeURIComponent(url.hash.slice(1)));}catch{return;}
       if(!target)return;
       interacted=true;e.preventDefault();history.pushState(null,'',url.hash);
-      const focusTarget=()=>{const hadIndex=target!.hasAttribute('tabindex');if(!hadIndex)target!.setAttribute('tabindex','-1');target!.focus({preventScroll:true});if(!hadIndex)target!.addEventListener('blur',()=>target!.removeAttribute('tabindex'),{once:true});};
-      lenis.scrollTo(anchorPosition(target),{offset:-28,duration:e.detail===0?0:.8,immediate:e.detail===0,onComplete:focusTarget});
+      const destination=position(target);
+      const commit=()=>{scroll(position(target!));document.dispatchEvent(new CustomEvent('rihs:section-navigation',{detail:target}));focusTarget(target!);};
+      const longJump=Math.abs(destination-window.scrollY)>window.innerHeight*1.5;
+      transition?.skipTransition();
+      if(!reduced&&e.detail>0&&longJump&&document.startViewTransition){
+        transition=document.startViewTransition(async()=>{commit();await settleOceanFrame();});
+        transition.ready.catch(()=>{/* A newer navigation can skip this transition. */});
+        transition.finished.catch(()=>{/* Navigation interruption is expected. */});
+      }else scroll(destination,reduced||e.detail===0||longJump,()=>{document.dispatchEvent(new CustomEvent('rihs:section-navigation',{detail:target}));focusTarget(target!);});
     };
-    const layout=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{lenis?.resize();ScrollTrigger.refresh();});};
-    document.addEventListener('click',click);
-    document.addEventListener('toggle',layout,true);
-    document.addEventListener('rihs:layout',layout);
-    window.addEventListener('hashchange',restore);
-    return()=>{alive=false;window.removeEventListener('wheel',interaction);window.removeEventListener('touchstart',interaction);window.removeEventListener('keydown',interaction);cancelAnimationFrame(frame);document.removeEventListener('click',click);document.removeEventListener('toggle',layout,true);document.removeEventListener('rihs:layout',layout);document.removeEventListener('rihs:menu-lock',lock);window.removeEventListener('hashchange',restore);if(lenis){gsap.ticker.remove(tick);lenis.off('scroll',update);lenis.destroy();}delete html.dataset.scrollOwner;};
+    const layout=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(refresh);};
+    const restore=()=>{const target=findTarget();if(target){refresh();scroll(position(target));}};
+    const pageshow=(event:PageTransitionEvent)=>{if(event.persisted)layout();};
+    document.addEventListener('click',click);document.addEventListener('toggle',layout,true);document.addEventListener('rihs:layout',layout);
+    window.addEventListener('hashchange',restore);window.addEventListener('pageshow',pageshow);
+    return()=>{alive=false;transition?.skipTransition();cancelAnimationFrame(frame);window.removeEventListener('wheel',interaction);window.removeEventListener('touchstart',interaction);window.removeEventListener('keydown',interaction);document.removeEventListener('click',click);document.removeEventListener('toggle',layout,true);document.removeEventListener('rihs:layout',layout);document.removeEventListener('rihs:menu-lock',lock);window.removeEventListener('hashchange',restore);window.removeEventListener('pageshow',pageshow);if(lenis){gsap.ticker.remove(tick);lenis.off('scroll',update);lenis.destroy();}delete html.dataset.scrollOwner;};
   },[reduced]);
 }

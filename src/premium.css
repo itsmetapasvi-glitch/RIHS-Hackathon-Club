@@ -37,7 +37,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid cur
 .menu-dialog .nav-register,.menu-dialog .nav-sponsor{font-family:var(--font-ui);font-size:15px;border:1px solid #0b354244;border-radius:40px;margin:7px 0;padding:14px 18px}
 .menu-dialog .nav-register{background:var(--ink);color:var(--paper)}
 .menu-top,.menu-contact{border-color:var(--line)}
-/* The two supplied videos and their seeking/handoff remain unchanged. */
+/* Original supplied MP4 assets; playback is coordinated by OceanHero. */
 .ocean-journey{--text-secondary:#f4f2e9;color:var(--paper)}
 .hero-copy h1{font-family:var(--font-display);font-size:clamp(72px,8vw,116px);font-weight:400;letter-spacing:-.04em;line-height:.91;text-shadow:0 2px 26px #04243255}
 .hero-copy h1>span{font-style:italic;color:var(--paper)}
@@ -253,7 +253,7 @@ html[data-motion=reduced] .button:active{transform:none}
 .our-sponsors .sponsor-marquee{overflow:hidden;margin:0 -7vw 34px;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .our-sponsors .sponsor-track{display:flex;width:max-content;animation:sponsor-drift 72s linear infinite;will-change:transform}
 .our-sponsors .sponsor-logos{display:flex;flex:none;min-width:min(50vw,728px);gap:24px;padding:15px 12px;margin:0;align-items:center}
-.our-sponsors .sponsor-panel{display:flex;align-items:center;justify-content:center;flex:0 0 clamp(250px,24vw,340px);height:175px;margin:0;border:1px solid #fff;border-radius:26px;background:#ffffffed;box-shadow:0 10px 25px #0b35420b,inset 0 1px 0 #fff;backdrop-filter:blur(12px)}
+.our-sponsors .sponsor-panel{display:flex;align-items:center;justify-content:center;flex:0 0 clamp(250px,24vw,340px);height:175px;margin:0;border:1px solid #fff;border-radius:26px;background:#ffffffed;box-shadow:0 10px 25px #0b35420b,inset 0 1px 0 #fff;backdrop-filter:none}
 .sponsor-panel>a,.sponsor-panel .sponsor-copy{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:28px;min-width:0;min-height:0;border-radius:26px}
 .sponsor-panel img{width:105px;height:105px;max-width:100%;object-fit:contain}
 .sponsor-panel .markivia-wordmark{color:#fff;background:var(--ink);padding:18px 20px;border-radius:10px;max-width:100%}
@@ -263,9 +263,46 @@ html[data-motion=reduced] .button:active{transform:none}
 @media(max-width:550px){.our-sponsors .sponsor-logos{gap:16px;padding:12px 8px}.our-sponsors .sponsor-panel{flex-basis:245px;height:150px;border-radius:22px}.sponsor-panel>a,.sponsor-panel .sponsor-copy{padding:24px;border-radius:22px}}
 @media(prefers-reduced-motion:reduce){.our-sponsors .sponsor-track{animation:none;width:auto;justify-content:center;will-change:auto}.our-sponsors .sponsor-logos[aria-hidden]{display:none}.our-sponsors .sponsor-logos{flex-wrap:wrap;justify-content:center}.our-sponsors .sponsor-panel{flex-basis:260px}}
 
-/* Edge-to-edge ivory throughout the rise; blend only its leading top edge. */
-.arrival-enhanced .arrival-surface{width:100%;border-radius:0;box-shadow:none;--arrival-top-feather:0px}
-.arrival-enhanced:not(.arrival-settled) .arrival-surface{
-  mask-image:linear-gradient(to bottom,transparent 0,#000 var(--arrival-top-feather));
-}
+/* The transparent content plane needs no full-screen alpha mask or 3D raster layer. */
+.arrival-enhanced .arrival-stage{perspective:none}
+.arrival-enhanced .arrival-surface{width:100%;border-radius:0;box-shadow:none;backface-visibility:visible;mask-image:none}
 @media(max-width:550px){.arrival-enhanced .about{padding-left:36px;padding-right:36px}}
+
+/* One actual-video chapter spans About and the challenge, ending at a straight schedule cut. */
+.ocean-content-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:#052b3b;opacity:var(--content-shade,0)}
+.ocean-arrival{--ink:var(--paper);--text-secondary:#e0edf1;--line:#e0edf148;--accent:#b6d5cb;color:var(--paper);background:transparent}
+.ocean-arrival .arrival-surface,.ocean-arrival .about,.ocean-arrival .challenge{background:transparent;color:var(--paper);--text-secondary:#e0edf1}
+.ocean-arrival .about{display:flex;flex-direction:column;justify-content:center;min-height:100svh;padding-top:clamp(64px,8svh,110px);padding-bottom:clamp(64px,8svh,110px);border-bottom:0}
+.ocean-arrival .about .section-heading{margin:0 auto;width:100%}
+.ocean-arrival .about .facts{width:100%}
+.ocean-arrival .about h2 em,.ocean-arrival .challenge h2 em{color:#c8e7ec}
+.ocean-arrival .facts svg,.ocean-arrival .challenge-steps li>span{color:#b6d5cb}
+.ocean-arrival .facts strong{color:var(--paper)}
+.ocean-arrival .about .fact-note{margin-left:auto;margin-right:auto}
+.ocean-arrival .challenge{display:block;min-height:100svh;padding-top:clamp(75px,10svh,120px);padding-bottom:clamp(75px,10svh,120px);border-bottom:0}
+.ocean-arrival .challenge-heading{max-width:1000px;margin:0 auto;text-align:center}
+.ocean-arrival .challenge-heading>p{max-width:660px;margin-left:auto;margin-right:auto}
+.ocean-arrival .challenge-steps{margin-top:76px}
+.ocean-arrival .section-label{color:#b6d5cb}
+.ocean-arrival .challenge-steps li{border-color:#e0edf148}
+.ocean-arrival .challenge-steps li:nth-child(2),.ocean-arrival .challenge-steps li:nth-child(3){margin-top:0}
+.static-journey .ocean-arrival{background:var(--navy)}
+.schedule{border-radius:0}
+html{background:var(--scrollbar-track,var(--paper));scrollbar-width:thin;scrollbar-color:var(--scrollbar-thumb,#28546166) var(--scrollbar-track,transparent)}
+::-webkit-scrollbar{width:6px;height:6px;background:var(--scrollbar-track,transparent)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb,#28546166);border-radius:10px;border:1px solid var(--scrollbar-track,transparent)}
+::-webkit-scrollbar-track{background:var(--scrollbar-track,transparent)}
+@media(max-width:550px){.ocean-arrival .challenge-steps{margin-top:42px}.ocean-arrival .challenge{padding-left:30px;padding-right:30px}}
+
+/* Resolve the moving water into the schedule colour behind, never over, the copy. */
+.ocean-end-blend{position:absolute;inset:auto 0 0;height:clamp(180px,28svh,320px);z-index:2;pointer-events:none;background:linear-gradient(180deg,#082d3a00 0%,#082d3a33 28%,#082d3ab3 68%,var(--navy) 100%)}
+.static-journey .ocean-end-blend{display:none}
+
+/* Short native page/long-anchor crossfades; natural scrolling keeps the full cinematic scene. */
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:220ms}
+::view-transition-old(root){animation:route-out 160ms ease-out both}
+::view-transition-new(root){animation:route-in 220ms cubic-bezier(.22,1,.36,1) both}
+@keyframes route-out{to{opacity:0}}
+@keyframes route-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){animation:none!important}}

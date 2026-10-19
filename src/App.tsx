@@ -4,6 +4,7 @@ import {event,eventState,applicationState,tiers,sponsors,faqs,schedule} from './
 import OceanHero from './OceanHero';
 import {useSiteMotion} from './site-motion';
 import {useSmoothScroll} from './smooth-scroll';
+import {useScrollbarSurface} from './scrollbar-surface';
 
 type Page='home'|'register'|'sponsor'|'contact';
 const preview=import.meta.env.VITE_SPONSOR_PREVIEW==='true';
@@ -71,7 +72,7 @@ function Facts(){
   return <div className="facts">{facts.map(({icon:Icon,value,label})=><div key={value}><Icon aria-hidden="true" size={20} strokeWidth={1.5}/><strong>{value}</strong><span>{label}</span></div>)}</div>;
 }
 function About(){return <section id="about" className="section about"><div className="section-heading"><h2><Words text="Build, learn,"/><br/><em><Words text="and show your work."/></em></h2><div><p>Spend a day turning an idea into something you can share. Build with others, learn in workshops, and get support from mentors.</p><p>Organized by the {event.organizer}. Everyone is welcome—you don’t need to attend RIHS, and you don’t need coding experience.</p></div></div><Facts/><p className="fact-note">Check-in begins at {event.checkIn}. Building runs {event.buildWindow} Pacific; submissions close at {event.submissionTime}.</p></section>;}
-function Challenge(){return <section id="theme" className="section challenge"><div className="challenge-heading"><span className="section-label">The challenge</span><h2><Words text="It starts with water."/><br/><em><Words text="Where it goes is up to you."/></em></h2><p>The specific prompt is revealed at the opening ceremony. Presentations, websites, apps, games—choose the format that fits your idea.</p></div><figure className="challenge-visual" aria-hidden="true"><img src="/media/hero-surface-poster.webp" alt="" width="1280" height="720" loading="lazy"/><span>WATER.</span></figure><ol className="challenge-steps"><li><span>01</span><h3>Meet the prompt.</h3><p>A water-related challenge, unveiled at 9am.</p></li><li><span>02</span><h3>Make it yours.</h3><p>Build a finished project and submit by {event.submissionTime}.</p></li><li><span>03</span><h3>Show what you made.</h3><p>Present your project for judging by industry mentors.</p></li></ol></section>;}
+function Challenge(){return <section id="theme" className="section challenge"><div className="challenge-heading"><span className="section-label">The challenge</span><h2><Words text="It starts with water."/><br/><em><Words text="Where it goes is up to you."/></em></h2><p>The specific prompt is revealed at the opening ceremony. Presentations, websites, apps, games—choose the format that fits your idea.</p></div><ol className="challenge-steps"><li><span>01</span><h3>Meet the prompt.</h3><p>A water-related challenge, unveiled at 9am.</p></li><li><span>02</span><h3>Make it yours.</h3><p>Build a finished project and submit by {event.submissionTime}.</p></li><li><span>03</span><h3>Show what you made.</h3><p>Present your project for judging by industry mentors.</p></li></ol></section>;}
 function Schedule(){const icons=[Compass,Flag,Code2,Flag,Utensils,Sparkles,Trophy,Waves];return <section id="schedule" className="section schedule"><div className="schedule-heading"><span className="section-label">The run of the day</span><h2><Words text="Your day"/><br/><Words text="at RIHS."/></h2><p>{event.dateLabel}<br/>All times Pacific.</p><div className="schedule-stamp" aria-hidden="true"><Clock3 aria-hidden="true"/><span>ONE DAY.<br/>MAKE IT COUNT.</span></div></div><div className="schedule-list"><span className="schedule-progress" aria-hidden="true"/>{schedule.map((item,i)=>{const Icon=icons[i];return <article key={item.time} className={i===2?'build-session':i===3?'submission-session':''}><span className="timeline-node" aria-hidden="true"><Icon aria-hidden="true" size={18}/></span><time>{item.time}</time><div><span className="schedule-type">{item.type}</span><h3>{item.title}</h3><p>{item.description}</p></div></article>})}</div></section>;}
 
 function SponsorDisplay({compact=false}:{compact?:boolean}){
@@ -81,11 +82,11 @@ function SponsorDisplay({compact=false}:{compact?:boolean}){
 }
 
 function FAQ(){const [open,setOpen]=useState<number|null>(null);const pointer=useRef(false);useEffect(()=>{
-  document.dispatchEvent(new Event('rihs:layout'));
+  if(open!==null)document.dispatchEvent(new Event('rihs:layout'));
   if(open===null||!pointer.current||document.documentElement.dataset.motion==='reduced'||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const animation=document.getElementById('answer-'+open)?.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:180,easing:'cubic-bezier(.23,1,.32,1)'});
   return()=>animation?.cancel();
-},[open]);return <section id="faq" className="section faq"><div><span className="section-label">The need-to-knows</span><h2><Words text="Good questions."/><br/><Words text="Clear answers."/></h2><p>Still have a question?<br/><a href="/contact/">Get in touch <ArrowUpRight aria-hidden="true" size={14}/></a></p></div><div className="faq-list">{faqs.map(([q,a],i)=><div className="faq-item" key={q}><h3><button aria-expanded={open===i} aria-controls={'answer-'+i} id={'question-'+i} onClick={e=>{pointer.current=e.detail>0;setOpen(open===i?null:i);}}><span className="faq-number" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><span className="faq-question">{q}</span>{open===i?<Minus aria-hidden="true" size={17}/>:<Plus aria-hidden="true" size={17}/>}</button></h3><div id={'answer-'+i} role="region" aria-labelledby={'question-'+i} hidden={open!==i}><p>{a}{i===9&&<> <a href="/register/">Register here <ArrowUpRight aria-hidden="true" size={14}/></a></>}</p></div></div>)}</div></section>;}
+},[open]);return <section id="faq" className="section faq"><div><span className="section-label">The need-to-knows</span><h2><Words text="Good questions."/><br/><Words text="Clear answers."/></h2><p>Still have a question?<br/><a href="/contact/">Get in touch <ArrowUpRight aria-hidden="true" size={14}/></a></p></div><div className="faq-list">{faqs.map(([q,a],i)=><div className="faq-item" key={q}><h3><button aria-expanded={open===i} aria-controls={'answer-'+i} id={'question-'+i} onClick={e=>{pointer.current=e.detail>0;setOpen(open===i?null:i);if(open===i)document.dispatchEvent(new Event('rihs:layout'));}}><span className="faq-number" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><span className="faq-question">{q}</span>{open===i?<Minus aria-hidden="true" size={17}/>:<Plus aria-hidden="true" size={17}/>}</button></h3><div id={'answer-'+i} role="region" aria-labelledby={'question-'+i} hidden={open!==i}><p>{a}{i===9&&<> <a href="/register/">Register here <ArrowUpRight aria-hidden="true" size={14}/></a></>}</p></div></div>)}</div></section>;}
 function Venue(){return <section id="venue" className="section venue"><div className="venue-copy"><p className="section-label">January 9. Your next big idea.</p><h2><Words text="Make something"/><br/><Words text="that makes waves."/></h2><p className="venue-address"><MapPin aria-hidden="true" size={18}/><span>{event.school} · {event.venueRoom}<br/>{event.address}</span></p><div className="venue-actions"><a className="button" href="/register/">Save your spot <ArrowUpRight aria-hidden="true" size={22}/></a><a className="text-link" href={event.directions} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight aria-hidden="true" size={18}/></a></div><p className="venue-deadline">Free to join · 100 spots · Apply by {event.deadlineLabel}</p></div></section>;}
 
 function FormArea({kind}:{kind:'participant'|'sponsor'}){
@@ -106,14 +107,15 @@ function Footer(){
 
 export default function App(){
   const reduced=useReducedMotion();
-  useSmoothScroll(reduced);
   useSiteMotion(reduced);
+  useSmoothScroll(reduced);
+  useScrollbarSurface();
   useEffect(()=>{document.documentElement.dataset.motion=reduced?'reduced':'full';},[reduced]);
   useEffect(()=>{try{localStorage.removeItem('rihs.motion');}catch{/* Legacy manual pause no longer applies. */}},[]);
   return <><div className={'site-shell page-'+currentPage}>
     <a className="skip-link" href="#main">Skip to content</a>
     <Header page={currentPage} reduced={reduced}/>
-    <main id="main" tabIndex={-1}>{currentPage==='home'?<><OceanHero reduced={reduced} arrival={<About/>}><Countdown/></OceanHero><Challenge/><Schedule/><SponsorDisplay compact/><FAQ/><Venue/></>:currentPage==='register'?<RegisterPage/>:currentPage==='sponsor'?<SponsorPage/>:<ContactPage/>}</main>
+    <main id="main" tabIndex={-1}>{currentPage==='home'?<><OceanHero reduced={reduced} arrival={<><About/><Challenge/></>}><Countdown/></OceanHero><Schedule/><SponsorDisplay compact/><FAQ/><Venue/></>:currentPage==='register'?<RegisterPage/>:currentPage==='sponsor'?<SponsorPage/>:<ContactPage/>}</main>
     <Footer/>
   </div></>;
 }

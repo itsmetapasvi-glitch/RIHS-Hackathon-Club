@@ -68,3 +68,17 @@ Markivia contrast correction: MARKIVIA is white and DIGITAL gold on a compact na
 
 
 Latest hero cleanup: removed the Scroll to explore cue and the trailing dot after 2027 in the hero heading. Production and preview builds, content verification, and browser inspection passed before publication.
+
+
+## Latest direction: ocean through About and Theme
+
+About and the water challenge are now inside the same ocean journey. The existing 10-second source video is mapped across the full scroll chapter and continues behind both sections, ending at the straight schedule boundary. No longer clip or re-encoded source was needed. The narrative text retains its previous reading distance. The separate water-picture figure was removed at the organizer's request.
+
+About uses equal vertical spacing with centred content. Light type and a controlled ocean tint provide contrast over the footage. Native scrollbar colours track the active surface. All four routes reference a background-free SVG crest traced from the organizer-supplied two-colour artwork. The favicon URL is versioned to avoid retaining the old wordmark in browser caches.
+
+The original videos, forms, event facts and confirmed sponsors are retained. Reduced motion and video-error fallback use a readable dark content surface. Latest corrections are local and have not been pushed. See ocean-through-theme-verification.md for the bounded browser checks and limitations.
+
+
+Schedule transition polish: a full-width gradient behind the text resolves the last 252px of ocean on a 900px desktop viewport (236px on an 844px mobile viewport) into the exact schedule navy. No new scroll distance or animation loop; straight edge retained, video unchanged. Desktop/mobile inspection confirmed readable last-step copy and no horizontal overflow. Builds and verification passed; not pushed.
+
+Motion/performance refinement: coordinated fragment placement and reveal geometry, demand-driven ocean seeking, portrait video delivery, crisp settled text transforms and native navigation crossfades. Ocean storytelling, rising content, sponsor motion and all event functionality are preserved. See `motion-performance-verification.md` for actual browser checks and remaining device-testing limitations. Local changes only; not pushed.

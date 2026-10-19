@@ -15,7 +15,7 @@ export function updateOceanStory(root:HTMLElement,progress:number){
     const enter=Math.max(0,Math.min(1,(progress-chapter.start)/.025));
     const exit=Math.max(0,Math.min(1,(progress-(chapter.end-.025))/.025));
     node.style.opacity=String(enter*(1-exit));
-    node.style.transform=`translate3d(0,${(1-enter)*18-exit*10}px,0)`;
+    node.style.transform=`translateY(${Math.round((1-enter)*18-exit*10)}px)`;
   });
 }
 

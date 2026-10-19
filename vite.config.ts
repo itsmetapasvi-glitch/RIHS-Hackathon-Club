@@ -10,6 +10,8 @@ export default defineConfig({
     const meta=`<title>${title}</title><meta name="description" content="${description}"/><meta property="og:title" content="${title}"/><meta property="og:description" content="${description}"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="${title}"/><meta name="twitter:description" content="${description}"/><script type="application/ld+json">${JSON.stringify(structured)}</script>`;
     const fallback=`<noscript><div style="padding:3rem;font-family:Arial,sans-serif"><h1>${event.name}</h1><p>${event.dateLabel}, ${event.timeLabel}. Check-in ${event.checkIn}.</p><p>${event.school} · ${event.venueRoom}, ${event.address}.</p><p>Free admission. ${event.capacity} spots. Building ${event.buildWindow} Pacific; submissions due ${event.submissionTime}.</p><p>Participant and sponsorship deadline: ${event.deadlineLabel}. Exact cutoff time awaiting confirmation.</p><p><a href="/register/">Register to Participate</a> · <a href="/sponsor/">Sponsor Us</a></p><p>For registration or sponsorship help: <a href="mailto:${event.email}">${event.email}</a>.</p></div></noscript>`;
     return html.replace('<!--EVENT_META-->',meta).replace('<!--EVENT_FALLBACK-->',fallback);
-  }}],
+  }},{name:'render-ready-entry',transformIndexHtml:{order:'post',handler(html){
+    return html.replace(/<script type="module"(?! blocking=)/g,'<script type="module" blocking="render"');
+  }}}],
   build:{rollupOptions:{input:{home:'index.html',register:'register/index.html',sponsor:'sponsor/index.html',contact:'contact/index.html'}}},
 });

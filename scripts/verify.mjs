@@ -42,13 +42,17 @@ for(const folder of ['dist','dist-preview']){
   for(const field of ['description','og:title','og:description','og:type','twitter:card','twitter:title','twitter:description'])assert(new RegExp(`(?:name|property)="${field}"`).test(html));
   assert.equal(json.name,event.name);assert.equal(json.startDate,event.start);assert.equal(json.endDate,event.end);
   assert.equal(json.location.name,event.school+' '+event.venueRoom);assert.equal(json.organizer.email,event.email);assert.deepEqual(json.location.address,{'@type':'PostalAddress',...event.postalAddress});assert.equal(json.isAccessibleForFree,true);
+  assert(html.includes('href="/favicon.svg?v=crest-2027"'));
+  assert(html.includes('<script type="module" blocking="render"'));
   assert(html.includes('<noscript>'));assert(html.includes(event.deadlineLabel));assert(html.includes(event.submissionTime));assert(!/Dublin|Harbor|TBD|\/edit/.test(html));
   checks.push(`${folder}/${route||'home'}: metadata and no-JS facts passed`);
  }
  assert(!(await readdir(new URL(`${folder}/media/`,root))).includes('ocean-depth.webp'));
+ const favicon=await readFile(new URL(`${folder}/favicon.svg`,root),'utf8');assert(favicon.includes('<path'));assert(!favicon.includes('<rect'));
  const guide=await stat(new URL(`${folder}/downloads/rihs-sponsorship-guide.pdf`,root));assert(guide.size>1000);
  const media=await stat(new URL(`${folder}/media/ocean.mp4`,root));assert(media.size>1000000);
  const surface=await stat(new URL(`${folder}/media/hero-surface.mp4`,root));assert(surface.size>1000000);
+ for(const video of ['ocean-portrait.mp4','hero-surface-portrait.mp4'])assert((await stat(new URL(`${folder}/media/${video}`,root))).size>1000000);
  const poster=await stat(new URL(`${folder}/media/hero-surface-poster.webp`,root));assert(poster.size>1000);
  for(const font of ['CrimsonText-Regular.woff2','CrimsonText-Italic.woff2','Inter-Regular.woff2','Inter-Medium.woff2','Inter-Semibold.woff2'])assert((await stat(new URL(`${folder}/fonts/${font}`,root))).size>10000);
  for(const license of ['CrimsonText-OFL.txt','Inter-OFL.txt'])assert(/SIL OPEN FONT LICENSE/i.test(await readFile(new URL(`${folder}/fonts/${license}`,root),'utf8')));
