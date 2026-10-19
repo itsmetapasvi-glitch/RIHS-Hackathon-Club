@@ -45,8 +45,13 @@ for(const folder of ['dist','dist-preview']){
   assert(html.includes('<noscript>'));assert(html.includes(event.deadlineLabel));assert(html.includes(event.submissionTime));assert(!/Dublin|Harbor|TBD|\/edit/.test(html));
   checks.push(`${folder}/${route||'home'}: metadata and no-JS facts passed`);
  }
+ assert(!(await readdir(new URL(`${folder}/media/`,root))).includes('ocean-depth.webp'));
  const guide=await stat(new URL(`${folder}/downloads/rihs-sponsorship-guide.pdf`,root));assert(guide.size>1000);
  const media=await stat(new URL(`${folder}/media/ocean.mp4`,root));assert(media.size>1000000);
+ const surface=await stat(new URL(`${folder}/media/hero-surface.mp4`,root));assert(surface.size>1000000);
+ const poster=await stat(new URL(`${folder}/media/hero-surface-poster.webp`,root));assert(poster.size>1000);
+ for(const font of ['CrimsonText-Regular.woff2','CrimsonText-Italic.woff2','Inter-Regular.woff2','Inter-Medium.woff2','Inter-Semibold.woff2'])assert((await stat(new URL(`${folder}/fonts/${font}`,root))).size>10000);
+ for(const license of ['CrimsonText-OFL.txt','Inter-OFL.txt'])assert(/SIL OPEN FONT LICENSE/i.test(await readFile(new URL(`${folder}/fonts/${license}`,root),'utf8')));
 }
 const report={checkedAt:new Date().toISOString(),dateBoundaryTests:'passed',independentDeadlineTests:'passed',backgroundTimeRecovery:'passed',capacity:100,submissionTime:event.submissionTime,schedule:'passed',sponsorshipBenefits:'passed',pageChecks:checks,deadlineCutoffs:null,participantResponderUrl:event.participant.url,formAccess:{signedInBrowser:'Both new short URLs resolve to responder forms; You need access observed in the available signed-in session',anonymousHttp:'Previously observed: 401 Unauthorized',signedOutBrowser:'not verified'},publicFiles:files,faqCount:faqs.length};
 await writeFile(new URL('verification.json',root),JSON.stringify(report,null,2));

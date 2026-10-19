@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-18T22:40:47.714692+00:00",
+  "stages": [
+    "design-taste-frontend",
+    "gsap",
+    "lenis",
+    "web-design-guidelines",
+    "emil-design-eng",
+    "impeccable"
+  ],
+  "checks": {
+    "typescript": "passed",
+    "build": "passed",
+    "buildPreview": "passed",
+    "projectVerify": "passed",
+    "desktopRoutes1440": "passed",
+    "mobileRoutes390": "passed",
+    "narrowHero375": "passed",
+    "tabletHome768": "passed",
+    "motionToggle": "passed",
+    "keyboardSkipAndScrolling": "passed",
+    "dialogLockAndEscape": "passed",
+    "faqAndTiers": "passed",
+    "contactCopy": "passed",
+    "oceanChapters": "all three observed",
+    "oceanMetadata": "1920x1080",
+    "heroReverseRestoration": "passed"
+  },
+  "preservation": {
+    "public/media/ocean.mp4": {
+      "unchanged": false,
+      "sha256": "c9888b0dbf3535e8b9025f408b95df802334fbeff03f44dd8510e5afbcee35f3"
+    },
+    "public/media/hero-surface.mp4": {
+      "unchanged": true,
+      "sha256": "ce2b83595bec00cd16f4d41befb9c71b7eadf6bf0e05cc706e6bbf5cca60da05"
+    },
+    "public/downloads/rihs-sponsorship-guide.pdf": {
+      "unchanged": true,
+      "sha256": "676848b88e79d35f7c79bc9c77e22ab5b0b7222db2d99e8750a552f01aa631e6"
+    },
+    "src/event.ts": {
+      "unchanged": true,
+      "sha256": "8e17ff4c31363cacbfaf6942fb08a6785e1eabb3dbe5701ba13c61e7fe4d755f"
+    }
+  },
+  "limitations": [
+    "Impeccable context engine unavailable; documented direct-context fallback used",
+    "No physical-device or Safari test",
+    "OS preference wiring inspected; user reduced-motion mode tested",
+    "External form access not reverified signed out"
+  ],
+  "git": "local only; no commit or push"
+}

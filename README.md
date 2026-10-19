@@ -1,39 +1,52 @@
 # RIHS Hackathon 2027
 
-Four-page React/TypeScript/Vite website. Routes: /, /register/, /sponsor/, /contact/.
+React / TypeScript / Vite / GSAP / Lenis / Lucide. Four routes: /, /register/, /sponsor/, /contact/.
 
-## Preview
+## Local preview
 
-Run start-preview.cmd with Node installed. The built preview needs no dependency installation. The supplied server supports direct page routes and video range requests. A running local preview in this session uses http://127.0.0.1:5180/.
+Run start-preview.cmd with Node installed. The current local design preview is http://127.0.0.1:5180/. The server supports direct routes and video range requests.
 
-## Build
+## Build and verify
 
 npm.cmd ci
 npm.cmd run build
 npm.cmd run build:preview
 npm.cmd run verify
 
-The public build is dist/. The private design preview is dist-preview/. Only sponsor records marked confirmed are shown in the public build. Preview includes Chick-fil-A and Markivia Digital, without visible status captions. No tier or confirmation has been invented.
+Public delivery is dist/. Private design preview is dist-preview/. Only confirmed sponsors appear in the public build. The preview contains Chick-fil-A and Markivia Digital with no visible confirmation captions; no status or tier is invented.
 
-## Current design
+## Current art direction
 
-An open transparent header follows the supplied navigation reference, with separate registration and sponsorship pill actions. The loading intro has been removed; the hero is available immediately. Secondary pages use pale neutral backgrounds, navy panels, and clear action groups. Footer uses the same dark blue as the schedule and FAQ. All five sponsorship tiers and 30 benefits/conditions are retained.
+An open header, ocean footage, Crimson Text editorial display, Inter interface/body typography, ivory information surfaces, navy and rich aquatic blue. Both font families were verified in Healing Minds' live styles and are self-hosted under included SIL OFL licenses. The loading intro stays removed.
 
-The ocean component and MP4 remain unchanged, verified by SHA-256. Hero countdown targets 2027-01-09T09:00:00-08:00, recovers after background pauses, and changes state at 9 AM and 3 PM Pacific. Reduced-motion preferences remain supported. Native cursor is always available.
+The hero and scroll clips remain separate. The hero loops at the top; scrolling crossfades into the existing 1080p scroll-controlled video, and returning to the top resumes hero playback. OceanArrival adds a reversible rising page surface over the actual final video frame. The same video element stays pinned behind it, and completion is gated on the decoded end of the clip. No replacement ocean image is used. It owns no second scroll driver. Reduced motion and media failures use a static, readable normal-flow fallback. Native cursor, menu focus/lock, anchors and all route actions remain supported.
 
-## Event and forms
+See premium-design-notes.md and premium-verification.json for the latest design decisions and verification. Earlier refinement reports document prior stages.
 
-Event: January 9, 2027, 9 AM to 3 PM Pacific. Check-in 8:30 AM. Build 9:15 AM to 12:15 PM; submissions due 12:15 PM. Free participation, capacity 100. Venue: RIHS cafeteria, 16601 Riptide Wy, Lathrop, CA 95330. Advisor: kwone@bantasd.org.
+## Content
 
-Both application deadlines remain December 6, 2026. Exact cutoffs remain unset and independently configurable in src/event.ts.
+January 9, 2027, 9 AM–3 PM Pacific. Check-in 8:30 AM; building 9:15 AM–12:15 PM; submissions due 12:15 PM. Free participation; capacity 100. RIHS cafeteria, 16601 Riptide Wy, Lathrop, CA 95330. Advisor: kwone@bantasd.org.
+
+Participant and sponsor deadlines remain December 6, 2026. Exact cutoff times remain independently unset in src/event.ts.
 
 Participant: https://forms.gle/Tdr3m6frKN5pmfBTA
 Sponsor: https://forms.gle/FLytMPMBTxQf9oVL7
 
-Both supplied short links were observed resolving to published responder URLs. The available signed-in browser still displayed You need access for both. Signed-out browser access has not been checked; no universal inaccessibility is claimed. The website uses direct form buttons and contact help. No participant editor URL is shipped. No account changes or form submissions were made.
+Previously, the available signed-in browser displayed an access request after resolving both short URLs to responder forms. Signed-out access has not been verified; universal inaccessibility is not claimed. No editor URL ships. No external permissions or form submissions were changed.
 
-## Verification
+All five tiers and 30 benefits/conditions are retained. The supplied three-page sponsorship PDF is served unchanged; its previously noted cutoff/link differences have not been applied to website configuration.
 
-Both builds and eight page metadata variants pass. Countdown boundaries, independent deadline handling, schedule, all tier benefits and public assets are verified by scripts/verify.mjs. Browser checks cover responsive layouts, direct form targets, tier disclosure, contact navigation/copy, dark footer and removed orbit artwork. No physical-device test, formal performance score or public deployment is claimed.
+This refinement is local. No commit, push or deployment was performed.
 
-The public sponsorship guide contains corrected event facts and no QR codes or internal budget. Reports: verification.json and browser-verification.json.
+Latest corrections: challenge uses a pale aquatic-blue field after ivory About; venue uses ivory after dark FAQ. Decorative venue RIHS 2027 artwork removed. Registration/sponsor application bands span the viewport and keep readable column widths on wide screens. See actual-video-fix.md for verification.
+
+
+## Scroll handoff and sponsor ribbon refinement
+
+About now follows scroll position directly, without waiting on a video-ready event and catching up over 400ms. It rises linearly over 125svh, settles after anchor jumps, and reverses over the actual video. Both supplied MP4s are unchanged. The video seeks the latest Lenis position without another lagging interpolation clock. The ocean chapters now share 300svh (320svh on small screens), providing more reading distance and carrying the last chapter to the video endpoint.
+
+The manual pause control and saved override were removed as requested. System reduced-motion support remains. Initial font loading cannot restore an old hash after user interaction.
+
+Preview sponsors use a continuous ribbon of rounded white glass panels. Only DIGITAL in Markivia is gold. Copies are hidden from assistive technology and contain no repeated links. Keyboard focus holds the ribbon; reduced motion presents a static row. Sponsor confirmation filtering is unchanged.
+
+See scroll-handoff-verification.md for checks and limitations. No commit or push was performed.

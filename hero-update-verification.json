@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-18T19:22:06.959Z",
+  "localOnly": true,
+  "commitUnchanged": "ecbc1757a08d8154ef4ed14af4676aed49b20d69",
+  "surfaceVideo": "hero-surface.mp4; supplied 10-second H.264 footage, remuxed without re-encoding; muted loop",
+  "scrollVideo": "ocean.mp4; SHA-256 unchanged",
+  "handoff": "220ms crossfade triggered when scrolling begins; original clip remains scroll-controlled",
+  "browser": {
+    "desktop": {
+      "surfacePlaying": true,
+      "surfaceOpacity": 1,
+      "scrollOpacity": 0,
+      "scrollHandoffTime": 4.421999
+    },
+    "mobile": {
+      "width": 390,
+      "overflow": false,
+      "scrollHandoffTime": 3.315231,
+      "surfacePausedOnScroll": true
+    },
+    "reducedMotion": {
+      "videoCount": 0,
+      "staticPoster": "hero-surface-poster.webp"
+    },
+    "consoleWarningsAndErrors": 0
+  },
+  "download": {
+    "pdfBytes": 796838,
+    "sha256MatchesSuppliedFile": true,
+    "httpStatus": 200,
+    "sourcePdfPages": 3
+  },
+  "videoRangeRequests": {
+    "surface": 206,
+    "scroll": 206
+  },
+  "builds": [
+    "public passed",
+    "preview passed",
+    "verification passed"
+  ],
+  "documentDifferences": [
+    "Supplied PDF has a different sponsor form link from the current website",
+    "Supplied PDF lists an 11:59 PM participant registration cutoff; website exact cutoffs stay unset"
+  ],
+  "limitations": [
+    "OS-level reduced motion and physical devices not emulated",
+    "Media-error fallback inspected in source only"
+  ]
+}

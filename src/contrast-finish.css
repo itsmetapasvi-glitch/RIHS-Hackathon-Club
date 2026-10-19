@@ -9,7 +9,7 @@
 .desktop-nav a[aria-current=page],.on-ocean .desktop-nav a[aria-current=page]{color:#d8f6ff}
 .desktop-nav a:after{bottom:2px}
 .desktop-nav .nav-register,.desktop-nav .nav-sponsor{padding:0 17px;border-radius:30px;border:1px solid #9bc7db80}
-.desktop-nav .nav-register{background:#d5edf5;color:#103450!important;border-color:#d5edf5;font-weight:600}
+.desktop-nav .nav-register{background:#d5edf5;color:#103450;border-color:#d5edf5;font-weight:600}
 .desktop-nav .nav-sponsor{color:#e5f5ff;background:#e4f5ff09}
 .desktop-nav .nav-register:after,.desktop-nav .nav-sponsor:after{display:none}
 .desktop-nav a:last-child,.on-ocean .desktop-nav a:last-child{padding:0;border:0;border-radius:0}
@@ -150,9 +150,9 @@
 .desktop-nav a[aria-current=page]{color:inherit}
 .desktop-nav a:after{bottom:5px}
 .desktop-nav .nav-register,.desktop-nav .nav-sponsor{padding:0 19px;border-radius:30px;min-height:43px;letter-spacing:.04em}
-.desktop-nav .nav-register{background:#f5fbff;color:#173e64!important;border-color:#f5fbff}
+.desktop-nav .nav-register{background:#f5fbff;color:#173e64;border-color:#f5fbff}
 .desktop-nav .nav-sponsor{background:transparent;border-color:#d8edf68a;color:#f4faff}
-.on-page .desktop-nav .nav-register{background:#173e64;color:#f3faff!important;border-color:#173e64}
+.on-page .desktop-nav .nav-register{background:#173e64;color:#f3faff;border-color:#173e64}
 .on-page .desktop-nav .nav-sponsor{color:#173e64;border-color:#62839b80;background:transparent}
 .on-page .menu-trigger{color:#173e64}
 .nav-actions .motion-toggle{color:#edf7ff}

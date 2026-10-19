@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-18T23:53:03.889694+00:00",
+  "desktopVideo": {
+    "complete": "true",
+    "overflow": false,
+    "replacementLayers": 0,
+    "video": {
+      "duration": 10,
+      "opacity": "1",
+      "time": 9.991181
+    },
+    "videoTop": 0,
+    "viewport": {
+      "height": 668,
+      "width": 870
+    }
+  },
+  "mobileVideo": {
+    "complete": "true",
+    "duration": 10,
+    "overflow": false,
+    "replacementLayers": 0,
+    "time": 9.991121,
+    "videoTop": 0,
+    "viewport": 390,
+    "y": 1793.5999755859375
+  },
+  "build": "passed",
+  "buildPreview": "passed",
+  "projectVerify": "passed",
+  "wideApplications": {
+    "viewport": "approximately 2525px",
+    "bandLeft": 0,
+    "bandWidth": "full available width",
+    "introWidth": 530.75,
+    "actionWidth": 583.85,
+    "overflow": false
+  },
+  "mobileApplications": {
+    "viewport": 390,
+    "columns": "one 332px column",
+    "overflow": false,
+    "formUrls": "unchanged"
+  },
+  "colors": {
+    "about": "#f4f2e9",
+    "challenge": "#c7dfe4",
+    "faq": "#124d60",
+    "venue": "#f4f2e9"
+  },
+  "removed": [
+    "ocean-depth.webp replacement image and backdrop layers",
+    "decorative venue RIHS 2027 artwork"
+  ],
+  "preserved": [
+    "both original MP4 file hashes",
+    "event.ts hash",
+    "sponsorship PDF hash",
+    "forms and routes",
+    "existing typography and working section motion"
+  ],
+  "reducedMotion": "static hero and normal-flow About; no videos, no transforms",
+  "git": "local only, no commit or push",
+  "limitations": [
+    "Physical-device and Safari testing not performed"
+  ]
+}

@@ -1,0 +1,85 @@
+/* Preserve the ocean-led identity. Pills are actions; 16px corners belong to media/panels. */
+:root{--ice:#d4e7f2;--deep:#173e64;--sea:#08747b;--ease-in-out:cubic-bezier(.77,0,.175,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
+.hero-copy h1{font-weight:600;text-shadow:0 2px 28px #082b3d32}
+.hero-date,.hero-description,.hero-deadline{color:#f1f8fc;text-shadow:0 1px 12px #06243890}
+.hero-date{font-variant-numeric:tabular-nums}
+.hero-button{box-shadow:0 8px 35px #0928411c}
+.countdown-panel{border-top-color:#e3f5ff90}
+.countdown-panel>p{color:#f0f9ff}
+.countdown small{color:#e5f4fb;letter-spacing:.025em}
+.about{padding-top:110px;padding-bottom:90px}
+.about .section-heading>div{max-width:950px;gap:55px}
+.about .section-heading p{line-height:1.85}
+.facts strong{font-weight:500;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.challenge{display:grid;grid-template-columns:1.35fr .8fr;gap:45px 70px;padding-top:25px;padding-bottom:105px;align-items:center}
+.challenge-heading{min-width:0}
+.challenge-heading h2{font-size:clamp(40px,4.6vw,63px);line-height:1.07}
+.challenge-heading>p:not(.section-label){font-size:17px;max-width:580px;line-height:1.85;margin-top:28px}
+.challenge-visual{position:relative;min-height:390px;height:100%;max-height:465px;overflow:hidden;border-radius:16px;isolation:isolate;background:#144b62}
+.challenge-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:52% 50%}
+.challenge-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 30%,#062b45a6)}
+.challenge-visual>span{position:absolute;bottom:26px;left:23px;right:23px;z-index:1;font-size:clamp(50px,6.2vw,88px);letter-spacing:-.065em;font-weight:600;line-height:1;color:#d9f2fa}
+.challenge-steps{grid-column:1/-1;gap:50px;margin-top:6px;padding-bottom:35px;align-items:start}
+.challenge-steps li{min-width:0;padding-top:20px;border-top:1px solid #24577755}
+.challenge-steps li:nth-child(2){margin-top:25px}
+.challenge-steps li:nth-child(3){margin-top:50px}
+.challenge-steps li>span{font-size:43px;color:#3e7b99}
+.challenge-steps h3{font-size:24px;margin-top:16px}
+.challenge-steps p{font-size:15px;line-height:1.8;max-width:320px}
+.schedule-heading{top:45px}
+.schedule-list h3{font-weight:500;line-height:1.2}
+.schedule-list p{font-size:15px;line-height:1.8}
+.schedule-list time{font-size:22px;letter-spacing:-.035em}
+.schedule-type{font-size:10px;letter-spacing:.12em}
+.our-sponsors{padding-top:70px;padding-bottom:65px}
+.our-sponsors .sponsor-logos{gap:110px}
+.our-sponsors figure>a{min-height:120px}
+.faq h2{line-height:1.08}
+.faq button{font-size:17px;line-height:1.5}
+.faq-item p{line-height:1.85;max-width:620px}
+.tier-benefits{line-height:1.85}
+.page-hero-visual{box-shadow:12px 16px 0 #bad6e440}
+.page-intro .page-deadline{font-variant-numeric:tabular-nums}
+.application-action,.contact-direct{border:1px solid #bbd5e345}
+.footer-column>a{min-height:36px;font-size:14px}
+.footer-identity p{line-height:1.9}
+.footer-bottom{line-height:1.7;font-variant-numeric:tabular-nums}
+@media(max-width:1100px){.challenge{gap:35px 45px}.challenge-heading h2{font-size:46px}.challenge-visual{min-height:365px}.challenge-steps{gap:35px}.schedule-list time{font-size:19px}}
+@media(max-width:800px){.about{padding-top:80px;padding-bottom:60px}.challenge{grid-template-columns:1.1fr .8fr;gap:30px}.challenge-heading h2{font-size:39px}.challenge-heading>p:not(.section-label){font-size:15px}.challenge-visual{min-height:350px}.challenge-steps{gap:25px}.challenge-steps h3{font-size:21px}.challenge-steps p{font-size:14px}.schedule-list time{font-size:24px}}
+@media(max-width:550px){.about{padding-top:65px;padding-bottom:50px}.challenge{grid-template-columns:1fr;gap:30px;padding-top:20px;padding-bottom:60px}.challenge-heading h2{font-size:38px}.challenge-heading>p:not(.section-label){font-size:16px;line-height:1.8;margin-top:23px}.challenge-visual{min-height:240px;max-height:300px;aspect-ratio:1.4}.challenge-visual>span{font-size:70px;left:22px;bottom:21px}.challenge-steps{grid-template-columns:1fr;margin:0;padding-bottom:0;gap:25px}.challenge-steps li:nth-child(2),.challenge-steps li:nth-child(3){margin-top:0}.challenge-steps li{grid-template-columns:38px 1fr;padding-top:20px;gap:7px 17px}.challenge-steps li>span{font-size:31px}.challenge-steps h3{font-size:22px;margin-top:0}.challenge-steps p{font-size:15px;max-width:none}.schedule-list time{font-size:24px}.schedule-list p{font-size:14px}.our-sponsors{padding-top:45px;padding-bottom:45px}.our-sponsors .sponsor-logos{gap:25px}.our-sponsors figure>a{min-height:100px}.faq button{font-size:16px}.page-hero-visual{box-shadow:6px 7px 0 #bad6e440}.footer-column>a{min-height:44px;font-size:13px}}
+/* Three text chapters share the existing ocean scene and progress. */
+.ocean-story{position:absolute;inset:30% 7% auto;bottom:auto;max-width:none;min-height:310px;pointer-events:none;text-align:center;text-shadow:0 2px 28px #042435cc}
+.dive-chapter{position:absolute;inset:0;opacity:0;display:flex;flex-direction:column;align-items:center;color:#f1f9ff}
+.dive-chapter-label{display:flex;gap:22px;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.dive-chapter-label>span{font-variant-numeric:tabular-nums;color:#b9e4f2}
+.dive-title{font-size:clamp(43px,6.3vw,88px);font-weight:500;line-height:1.04;letter-spacing:-.055em;margin:25px 0 22px}
+.dive-description{font-size:clamp(16px,1.6vw,20px);line-height:1.65;max-width:570px;margin:0}
+.schedule-list{position:relative}
+.schedule-progress{position:absolute;left:0;top:0;bottom:0;width:2px;background:#9bd6ed;transform-origin:top;pointer-events:none}
+@media(max-width:550px){.ocean-story{inset:29% 6% auto;min-height:340px}.dive-chapter-label{font-size:10px;gap:15px}.dive-title{font-size:43px;margin:23px 0 20px}.dive-description{font-size:16px;max-width:310px}.schedule-progress{left:0}}
+
+html{scroll-behavior:auto;scrollbar-gutter:stable}html.lenis{scroll-behavior:auto!important}.menu-dialog{overflow-y:auto;overscroll-behavior:contain}
+
+h1,h2{text-wrap:balance}button,a,summary{touch-action:manipulation}
+.sponsor-logos:empty{display:none}
+.on-ocean a:focus-visible,.on-ocean button:focus-visible,.site-footer a:focus-visible,.faq a:focus-visible,.faq button:focus-visible,.tier[open] summary:focus-visible{outline:2px solid #d8f3ff;outline-offset:5px}
+.tier-name small,.form-step,.contact-direct-label,.visual-caption{font-size:11px}
+.in-kind-conditions,.form-note,.fact-note{font-size:12px}
+.menu-dialog{padding-top:max(25px,env(safe-area-inset-top));padding-bottom:max(30px,env(safe-area-inset-bottom))}
+.site-footer{padding-bottom:max(30px,env(safe-area-inset-bottom))}
+@media(max-width:550px){.nav-inner,.on-page .nav-inner{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}.hero-deadline{font-size:12px}.countdown small{font-size:11px}}
+.button,.nav-register,.nav-sponsor,.copy-email{transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease,transform 140ms var(--ease-out)}
+.button:active,.nav-register:active,.nav-sponsor:active,.copy-email:active{transform:scale(.975)}
+.faq-item button{transition:color 160ms ease,background-color 160ms ease}
+.faq-item button[aria-expanded=true]{color:#d3f3ff}
+@media(hover:hover) and (pointer:fine){.desktop-nav .nav-sponsor:hover{background:#d6edf51c;border-color:#d8f4ff}.desktop-nav .nav-register:hover{background:#fff;border-color:#fff}.text-link:hover svg,.form-contact:hover svg{transform:translate(2px,-2px)}.text-link svg,.form-contact svg{transition:transform 180ms var(--ease-out)}.faq-item button:hover{background:#ffffff04}.copy-email:hover{text-decoration:underline;text-underline-offset:4px}}
+html[data-motion=reduced] .button:active,html[data-motion=reduced] .nav-register:active,html[data-motion=reduced] .nav-sponsor:active,html[data-motion=reduced] .copy-email:active{transform:none}
+@media(prefers-reduced-motion:reduce){.button:active,.nav-register:active,.nav-sponsor:active,.copy-email:active,.text-link:hover svg,.form-contact:hover svg{transform:none}}
+/* Final corrections from the combined desktop/mobile inspection. */
+.on-page .nav-inner{color:#173e64}
+.hero-copy,.countdown-panel{min-width:0;max-width:100%}
+.page-hero-visual{box-shadow:8px 12px 26px #153d5312}
+::selection{background:#173e64;color:#e9f8ff}
+.site-shell{scrollbar-color:#638fa9 #d4e7f2}
+html{scrollbar-color:#638fa9 #d4e7f2;scrollbar-width:thin}
+@media(max-width:550px){.hero-primary{grid-template-columns:minmax(0,1fr)}.countdown-panel{width:100%;max-width:360px}.hero-copy h1{font-size:clamp(39px,11.1vw,60px)}.page-intro .page-deadline{font-size:12px}.application-action .form-note,.in-kind .in-kind-conditions{font-size:12px}}

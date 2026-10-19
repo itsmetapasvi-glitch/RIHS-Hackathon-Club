@@ -1,0 +1,291 @@
+{
+  "checkedAt": "2026-10-18T23:16:36.578775+00:00",
+  "build": "passed",
+  "buildPreview": "passed",
+  "projectVerify": "passed",
+  "reference": {
+    "fonts": [
+      "@font-face {\n  font-family: 'Crimson Text';\n  font-style: italic;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/crimsontext/v19/wlpogwHKFkZgtmSR3NB0oRJfajhRK_Y.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}",
+      "@font-face {\n  font-family: 'Crimson Text';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/crimsontext/v19/wlprgwHKFkZgtmSR3NB0oRJfajDqDuNS_LU.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}",
+      "@font-face {\n  font-family: 'Crimson Text';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/crimsontext/v19/wlp2gwHKFkZgtmSR3NB0oRJfbwhT.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}",
+      "@font-face {\n  font-family: 'Crimson Text';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/crimsontext/v19/wlppgwHKFkZgtmSR3NB0oRJX1C1GDNNQ.woff2) format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/yDtI2UI8XcEg1W2je9XPN3Noo.woff2\"); font-display: swap; font-style: normal; font-weight: 600; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2\"); font-display: swap; font-style: normal; font-weight: 400; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/1ZFS7N918ojhhd0nQWdj3jz4w.woff2\"); font-display: swap; font-style: normal; font-weight: 600; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/DXD0Q7LSl7HEvDzucnyLnGBHM.woff2\"); font-display: swap; font-style: normal; font-weight: 700; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/QxmhnWTzLtyjIiZcfaLIJ8EFBXU.woff2\"); font-display: swap; font-style: italic; font-weight: 700; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/qrVgiXNd6RuQjETYQiVQ9nqCk.woff2\"); font-display: swap; font-style: italic; font-weight: 600; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/ia3uin3hQWqDrVloC1zEtYHWw.woff2\"); font-display: swap; font-style: italic; font-weight: 700; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/pKRFNWFoZl77qYCAIp84lN1h944.woff2\"); font-display: swap; font-style: italic; font-weight: 400; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/syRNPWzAMIrcJ3wIlPIP43KjQs.woff2\"); font-display: swap; font-style: normal; font-weight: 700; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/UjlFhCnUjxhNfep4oYBPqnEssyo.woff2\"); font-display: swap; font-style: normal; font-weight: 500; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/Bo5CNzBv77CafbxOtKIkpw9egw.woff2\"); font-display: swap; font-style: italic; font-weight: 500; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/fuyXZpVvOjq8NesCOfgirHCWyg.woff2\"); font-display: swap; font-style: italic; font-weight: 600; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/vQyevYAyHtARFwPqUzQGpnDs.woff2\"); font-display: swap; font-style: normal; font-weight: 400; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/rZ5DdENNqIdFTIyQQiP5isO7M.woff2\"); font-style: normal; font-weight: 900; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }",
+      "@font-face { font-family: \"Inter\"; src: url(\"https://framerusercontent.com/assets/gcnfba68tfm7qAyrWRCf9r34jg.woff2\"); font-style: italic; font-weight: 900; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2070, U+2074-207E, U+2080-208E, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD }"
+    ],
+    "type": [
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "16.8px",
+        "size": "12px",
+        "spacing": "1.32px",
+        "tag": "P",
+        "weight": "600"
+      },
+      {
+        "font": "\"Crimson Text\", \"Crimson Text Placeholder\", serif",
+        "line": "116.1px",
+        "size": "129px",
+        "spacing": "-5.16px",
+        "tag": "H1",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "27px",
+        "size": "18px",
+        "spacing": "-0.54px",
+        "tag": "P",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "16.8px",
+        "size": "12px",
+        "spacing": "1.32px",
+        "tag": "P",
+        "weight": "600"
+      },
+      {
+        "font": "\"Crimson Text\", \"Crimson Text Placeholder\", serif",
+        "line": "90px",
+        "size": "90px",
+        "spacing": "-3.6px",
+        "tag": "P",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "24px",
+        "size": "16px",
+        "spacing": "-0.32px",
+        "tag": "P",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "16.8px",
+        "size": "12px",
+        "spacing": "1.32px",
+        "tag": "P",
+        "weight": "600"
+      },
+      {
+        "font": "\"Crimson Text\", \"Crimson Text Placeholder\", serif",
+        "line": "53.76px",
+        "size": "56px",
+        "spacing": "-1.68px",
+        "tag": "H2",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "27px",
+        "size": "18px",
+        "spacing": "-0.54px",
+        "tag": "P",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "27px",
+        "size": "18px",
+        "spacing": "-0.54px",
+        "tag": "P",
+        "weight": "400"
+      },
+      {
+        "font": "\"Crimson Text\", \"Crimson Text Placeholder\", serif",
+        "line": "90px",
+        "size": "90px",
+        "spacing": "-3.6px",
+        "tag": "H2",
+        "weight": "400"
+      },
+      {
+        "font": "Inter, \"Inter Placeholder\", sans-serif",
+        "line": "27px",
+        "size": "18px",
+        "spacing": "-0.54px",
+        "tag": "P",
+        "weight": "400"
+      }
+    ]
+  },
+  "contrast": [
+    {
+      "foreground": "#0b3542",
+      "background": "#f4f2e9",
+      "ratio": 11.69
+    },
+    {
+      "foreground": "#285461",
+      "background": "#f4f2e9",
+      "ratio": 7.4
+    },
+    {
+      "foreground": "#276273",
+      "background": "#f4f2e9",
+      "ratio": 6.08
+    },
+    {
+      "foreground": "#f4f2e9",
+      "background": "#082d3a",
+      "ratio": 12.94
+    },
+    {
+      "foreground": "#d4e7e4",
+      "background": "#082d3a",
+      "ratio": 11.3
+    },
+    {
+      "foreground": "#b6d5cb",
+      "background": "#082d3a",
+      "ratio": 9.24
+    },
+    {
+      "foreground": "#f4f2e9",
+      "background": "#124d60",
+      "ratio": 8.3
+    },
+    {
+      "foreground": "#d4e7e4",
+      "background": "#124d60",
+      "ratio": 7.25
+    },
+    {
+      "foreground": "#b6d5cb",
+      "background": "#124d60",
+      "ratio": 5.93
+    }
+  ],
+  "preservedAssetHashes": {
+    "public/media/ocean.mp4": "c9888b0dbf3535e8b9025f408b95df802334fbeff03f44dd8510e5afbcee35f3",
+    "public/media/hero-surface.mp4": "ce2b83595bec00cd16f4d41befb9c71b7eadf6bf0e05cc706e6bbf5cca60da05",
+    "public/downloads/rihs-sponsorship-guide.pdf": "676848b88e79d35f7c79bc9c77e22ab5b0b7222db2d99e8750a552f01aa631e6",
+    "src/event.ts": "8e17ff4c31363cacbfaf6942fb08a6785e1eabb3dbe5701ba13c61e7fe4d755f"
+  },
+  "mobile": [
+    {
+      "clipped": [],
+      "colors": [
+        "rgb(11, 53, 66)",
+        "rgb(23, 62, 100)",
+        "rgb(40, 84, 97)",
+        "rgb(39, 98, 115)",
+        "rgb(244, 242, 233)",
+        "rgb(212, 231, 228)",
+        "rgb(182, 213, 203)"
+      ],
+      "overflow": false,
+      "route": "/register/"
+    },
+    {
+      "clipped": [],
+      "colors": [
+        "rgb(11, 53, 66)",
+        "rgb(23, 62, 100)",
+        "rgb(40, 84, 97)",
+        "rgb(39, 98, 115)",
+        "rgb(244, 242, 233)",
+        "rgb(182, 213, 203)",
+        "rgb(212, 231, 228)",
+        "rgb(18, 77, 96)"
+      ],
+      "overflow": false,
+      "route": "/sponsor/"
+    },
+    {
+      "clipped": [],
+      "colors": [
+        "rgb(11, 53, 66)",
+        "rgb(23, 62, 100)",
+        "rgb(40, 84, 97)",
+        "rgb(244, 242, 233)",
+        "rgb(212, 231, 228)",
+        "rgb(182, 213, 203)"
+      ],
+      "overflow": false,
+      "route": "/contact/"
+    }
+  ],
+  "desktop": [
+    {
+      "brokenImages": 0,
+      "clipped": [],
+      "overflow": false,
+      "route": "/register/"
+    },
+    {
+      "brokenImages": 0,
+      "clipped": [],
+      "overflow": false,
+      "route": "/sponsor/"
+    },
+    {
+      "brokenImages": 0,
+      "clipped": [],
+      "overflow": false,
+      "route": "/contact/"
+    }
+  ],
+  "arrival": {
+    "forward": {
+      "overflow": false,
+      "stageTop": 0,
+      "surfaceTop": 267.6888122558594,
+      "transform": "matrix3d(0.949, 0, 0, 0, 0, 0.948059, 0.042247, 0, 0, -0.0445174, 0.999009, 0, 0, 267.689, 0, 1)",
+      "y": 1368
+    },
+    "reverse": {
+      "stageTop": 0,
+      "surfaceTop": 688.5,
+      "y": 1152
+    }
+  },
+  "mediaFailure": {
+    "aboutTop": 720,
+    "arrivalClass": "ocean-arrival arrival-static",
+    "arrivalEnhanced": false,
+    "registerLink": "/register/",
+    "staticHero": true,
+    "surfaceTransform": "none",
+    "videos": 0
+  },
+  "reducedMotion": {
+    "videos": 0,
+    "arrivalEnhanced": false,
+    "transform": "none",
+    "scrollOwner": "native"
+  },
+  "otherChecks": [
+    "About anchor focus",
+    "skip link",
+    "menu lock and Escape",
+    "FAQ disclosure",
+    "contact copy",
+    "short phone hero",
+    "tablet home",
+    "hero reverse playback restoration"
+  ],
+  "limitations": [
+    "No physical-device or Safari test",
+    "OS preference wiring inspected; user toggle tested",
+    "External form access not reverified signed out"
+  ],
+  "git": "uncommitted and unpushed",
+  "mobileColorNote": "The extra legacy menu-icon navy observed during the first mobile scan was subsequently normalized to the Ink token.",
+  "historicalStage": "Earlier editorial pass; image-backed arrival superseded by actual-video-verification.json"
+}
