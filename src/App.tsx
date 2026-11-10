@@ -78,17 +78,24 @@ function Schedule(){const icons=[Compass,Flag,Code2,Flag,Utensils,Sparkles,Troph
 
 function SponsorDisplay({compact=false,mobile=false}:{compact?:boolean;mobile?:boolean}){
   const marquee=useRef<HTMLDivElement>(null);
+  const [copies,setCopies]=useState(()=>innerWidth<=800?2:innerWidth>=2900?6:4);
+  useEffect(()=>{
+    const small=matchMedia('(max-width: 800px)'),wide=matchMedia('(min-width: 2900px)');
+    const update=()=>setCopies(small.matches?2:wide.matches?6:4);
+    small.addEventListener('change',update);wide.addEventListener('change',update);update();
+    return()=>{small.removeEventListener('change',update);wide.removeEventListener('change',update);};
+  },[]);
   useEffect(()=>{
     const root=marquee.current;
     if(!root)return;
     const observer=new IntersectionObserver(([entry])=>{root.dataset.running=String(entry.isIntersecting&&!document.hidden);});
     const visibility=()=>{const rect=root.getBoundingClientRect();root.dataset.running=String(!document.hidden&&rect.bottom>0&&rect.top<innerHeight);};
-    observer.observe(root);document.addEventListener('visibilitychange',visibility);
-    return()=>{observer.disconnect();document.removeEventListener('visibilitychange',visibility);};
+    observer.observe(root);document.addEventListener('visibilitychange',visibility);window.addEventListener('pageshow',visibility);window.addEventListener('focus',visibility);
+    return()=>{observer.disconnect();document.removeEventListener('visibilitychange',visibility);window.removeEventListener('pageshow',visibility);window.removeEventListener('focus',visibility);};
   },[]);
   const visible=sponsors.filter(s=>s.confirmationStatus==='confirmed'||preview).sort((a,b)=>a.displayOrder-b.displayOrder);
   const logo=(s:typeof sponsors[number])=>s.name==='Markivia Digital'?<span className="markivia-wordmark" role="img" aria-label="Markivia Digital"><span>MARKIVIA</span><small>DIGITAL</small></span>:<img className={'sponsor-logo'+(s.name==='CodeCrafters'?' sponsor-logo-wide':'')} src={s.logo} alt={s.name} width="220" height="96" loading="lazy"/>;
-  return <section id="our-sponsors" className={'section our-sponsors '+(compact?'compact':'')} aria-label="Our sponsors"><h2 className="sr-only">Our sponsors</h2>{visible.length>0&&<div ref={marquee} className="sponsor-marquee" style={{'--sponsor-count':visible.length,'--sponsor-copies':mobile?4:8} as React.CSSProperties}><div className="sponsor-track">{Array.from({length:mobile?4:8},(_,copy)=><div className="sponsor-logos" key={copy} aria-hidden={copy>0?true:undefined}>{visible.map(s=><figure className="sponsor-panel" key={s.name}>{copy===0?<a href={s.website} target="_blank" rel="noopener noreferrer" aria-label={s.name+' website'}>{logo(s)}</a>:<div className="sponsor-copy">{logo(s)}</div>}</figure>)}</div>)}</div></div>}<a className="text-link" href="/sponsor/#apply">Apply to be a Sponsor <ArrowUpRight aria-hidden="true" size={18}/></a></section>;
+  return <section id="our-sponsors" className={'section our-sponsors '+(compact?'compact':'')} aria-label="Our sponsors"><h2 className="sr-only">Our sponsors</h2>{visible.length>0&&<div ref={marquee} className="sponsor-marquee" style={{'--sponsor-count':visible.length,'--sponsor-copies':copies} as React.CSSProperties}><div className="sponsor-track">{Array.from({length:copies},(_,copy)=><div className="sponsor-logos" key={copy} aria-hidden={copy>0?true:undefined}>{visible.map(s=><figure className="sponsor-panel" key={s.name}><a href={s.website} target="_blank" rel="noopener noreferrer" aria-label={s.name+' website'} tabIndex={copy>0?-1:undefined}>{logo(s)}</a></figure>)}</div>)}</div></div>}<a className="text-link" href="/sponsor/#apply">Apply to be a Sponsor <ArrowUpRight aria-hidden="true" size={18}/></a></section>;
 }
 
 function FAQ(){const [open,setOpen]=useState<number|null>(null);const pointer=useRef(false);useEffect(()=>{

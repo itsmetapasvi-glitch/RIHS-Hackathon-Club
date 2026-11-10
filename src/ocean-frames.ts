@@ -71,7 +71,8 @@ export function createOceanFrames(canvas:HTMLCanvasElement,portrait:boolean,onRe
   return {
     setProgress(progress:number){
       const next=Math.round(Math.max(0,Math.min(1,progress))*(count-1));
-      if(next!==target){direction=next>target?1:-1;target=next;canvas.dataset.requestedFrame=String(target);}
+      if(next===target)return;
+      direction=next>target?1:-1;target=next;canvas.dataset.requestedFrame=String(target);
       // ScrollTrigger already runs at the render boundary. Cached frames must not wait another RAF.
       if(active){draw();pump();}
     },
